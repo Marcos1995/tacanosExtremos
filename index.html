@@ -101,7 +101,7 @@
     .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.7rem; color: var(--gold); }
     .stat span { color: var(--paper); font-size: 0.92rem; }
     section { padding: 3.5rem 0; }
-    .section-head { max-width: 40rem; margin-bottom: 2rem; }
+    .section-head { max-width: 42rem; margin-bottom: 2rem; }
     h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0.3rem 0 0.6rem; }
     .grid-3, .grid-2 { display: grid; gap: 1rem; }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
@@ -124,6 +124,39 @@
       font-size: 0.88rem; font-weight: 600;
     }
     .ext a:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+    .level-board { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 1.2rem; align-items: stretch; }
+    .level-visual {
+      position: relative; aspect-ratio: 1; border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--line); background: var(--forest); min-height: 280px;
+    }
+    .level-visual img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0;
+      transform: scale(1.08);
+      transition: opacity 0.85s ease, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .level-visual img.on { opacity: 1; transform: scale(1); }
+    .bill-badge {
+      position: absolute; left: 1rem; bottom: 1rem; z-index: 2;
+      background: rgba(12, 24, 19, 0.78); border: 1px solid var(--line);
+      color: var(--gold); border-radius: 999px; padding: 0.4rem 0.8rem;
+      font-size: 0.82rem; font-weight: 600; backdrop-filter: blur(8px);
+    }
+    .level-copy {
+      background: var(--forest); border: 1px solid var(--line);
+      border-radius: 22px; padding: 1.4rem 1.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .level-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 1.1rem; }
+    .level-btns button {
+      border: 1px solid var(--line); background: transparent; color: var(--cream);
+      border-radius: 999px; padding: 0.55rem 0.95rem; cursor: pointer; font: inherit; font-weight: 600;
+    }
+    .level-btns button.on, .level-btns button:hover {
+      background: var(--gold); color: var(--ink); border-color: var(--gold);
+    }
+    .level-copy h3 { font-size: 1.7rem; }
+    .level-copy .joke { margin-top: 0.85rem; color: var(--gold); font-style: italic; }
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
     .chip {
       border: 1px solid var(--line); background: transparent; color: var(--cream);
@@ -148,16 +181,10 @@
       background: var(--pine); border: 1px solid var(--line);
     }
     .result strong { font-family: Fraunces, Georgia, serif; font-size: 2rem; color: var(--gold); }
-    .grades { display: grid; gap: 0.8rem; }
-    .grade {
-      display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; align-items: center;
-      padding: 1rem; border-radius: 18px; border: 1px solid var(--line); background: var(--forest);
-    }
-    .grade b { font-family: Fraunces, Georgia, serif; color: var(--gold); }
     .note { color: var(--muted); font-size: 0.88rem; }
-    #grados { padding-bottom: 4.8rem; }
+    #calculadora { padding-bottom: 4.8rem; }
     @media (max-width: 860px) {
-      .stats, .grid-3, .grid-2, .tactic, .grade { grid-template-columns: 1fr; }
+      .stats, .grid-3, .grid-2, .tactic, .level-board { grid-template-columns: 1fr; }
       .tactic img { width: 100%; height: 180px; }
       nav { display: none; }
     }
@@ -172,9 +199,9 @@
       </a>
       <nav>
         <a href="#manifiesto">Manifiesto</a>
+        <a href="#niveles">Niveles</a>
         <a href="#tacticas">Tácticas</a>
         <a href="#calculadora">Calculadora</a>
-        <a href="#grados">Grados</a>
       </nav>
     </div>
   </header>
@@ -184,16 +211,16 @@
     <div class="wrap hero-copy">
       <p class="kicker">Manual verídico · humor incluido · milagros no</p>
       <h1>Ser tacaño extremo es un deporte de precisión.</h1>
-      <p class="lede">No se trata de vivir mal. Se trata de dejar de pagar por inercia. Aquí hay tácticas reales —luz, comida, transporte, compras y fugas bancarias— contadas con sorna, comprobadas con recibos.</p>
+      <p class="lede">De principiante a “le pongo un ladrillo al váter”. Elige tu nivel y las tácticas se vuelven más locas. Siguen siendo reales. El dentista, el fontanero y tus amigos pueden no aplaudir.</p>
       <div class="cta-row">
-        <a class="btn" href="#tacticas">Ver las tácticas</a>
+        <a class="btn" href="#niveles">Elige tu nivel</a>
         <a class="btn ghost" href="#calculadora">Calcular el recorte</a>
       </div>
     </div>
   </section>
 
   <div class="wrap stats">
-    <div class="stat"><b>30 %</b><span>de la cesta se va en desperdicio y capricho si no hay lista.</span></div>
+    <div class="stat"><b>4 niveles</b><span>De lista de la compra a jabón casero. Tú decides cuánto teatro.</span></div>
     <div class="stat"><b>Stand-by</b><span>Los aparatos apagados de mentira siguen cobrando alquiler eléctrico.</span></div>
     <div class="stat"><b>0 €</b><span>cuesta el truco más rentable: no comprar lo que no hace falta.</span></div>
   </div>
@@ -239,12 +266,38 @@
     </div>
   </section>
 
+  <section id="niveles">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Selector de tacañería</p>
+        <h2>¿Hasta dónde estás dispuesto a llegar?</h2>
+        <p>Pulsa un nivel. Los billetes se amontonan y las tácticas se ponen más raras. Nadie te obliga a llegar a Extremo. Pero el ladrillo de la cisterna te está guiñando un ojo.</p>
+      </div>
+      <div class="level-board">
+        <div class="level-visual" id="level-visual">
+          <img src="assets/nivel-principiante.png" alt="Un billete sobre la mesa" data-level="principiante" class="on">
+          <img src="assets/nivel-medio.png" alt="Tres billetes sobre la mesa" data-level="medio">
+          <img src="assets/nivel-experto.png" alt="Cinco billetes sobre la mesa" data-level="experto">
+          <img src="assets/nivel-extremo.png" alt="Diez billetes amontonados" data-level="extremo">
+          <div class="bill-badge" id="bill-badge">1 billete</div>
+        </div>
+        <div class="level-copy">
+          <p class="kicker" id="level-kicker">Nivel 1 de 4</p>
+          <div class="level-btns" id="level-btns"></div>
+          <h3 id="level-title">Principiante</h3>
+          <p id="level-text"></p>
+          <p class="joke" id="level-joke"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="tacticas">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">Tácticas auténticas</p>
-        <h2>Formas reales de apretar sin teatro.</h2>
-        <p>Filtro por campo de batalla. Cada consejo es aburridamente cierto. La risa es opcional; el ahorro, no.</p>
+        <p class="kicker">Tácticas de este nivel</p>
+        <h2 id="tactics-title">El kit principiante.</h2>
+        <p id="tactics-lede">Consejos que tu madre aprobaría. Todavía puedes hablar de ellos en la cena.</p>
       </div>
       <div class="filters" id="filters"></div>
       <div class="grid-2" id="tactics"></div>
@@ -281,65 +334,174 @@
     </div>
   </section>
 
-  <section id="grados">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Escala interna</p>
-        <h2>De “miro el precio” a “cuento los granos”.</h2>
-      </div>
-      <div class="grades">
-        <div class="grade"><b>Cobre</b><p>Lista de la compra, marca blanca y ducha que no parece spa. Empiezas a notar el recibo.</p></div>
-        <div class="grade"><b>Pino</b><p>Batch cooking, nevera llena con sentido y el cargador fuera del enchufe. Tus amigos ya hacen chistes.</p></div>
-        <div class="grade"><b>Cobre viejo</b><p>Second hand por defecto, reparación antes que Amazon, comparas €/kilo como si fuera deporte olímpico.</p></div>
-        <div class="grade"><b>Hucha con candado</b><p>Cancelaste tres suscripciones, el standby está muerto y el delivery es folklore. Sigues comiendo bien. Eso es el truco.</p></div>
-      </div>
-    </div>
-  </section>
-
   <script>
-    const TACTICS = [
-      { cat: "Energía", img: "assets/energia.png", alt: "Casa ahorrando luz y calor", title: "El stand-by es un inquilino invisible",
-        text: "Regleta con interruptor para tele, router auxiliar y cargadores. LED en toda la casa. Lavadora a 30 °C y tendedero en vez de secadora. Nevera a 4 °C, congelador a −18 °C, goma de la puerta bien sellada. En invierno, cortinas por la noche; en verano, toldo y corriente cruzada antes que el aire a 22. Y sí: compara la tarifa, no te cases con la de siempre.",
-        save: "Recibo eléctrico: recorte real, no folklore.",
-        links: [
-          { href: "https://comparador.cnmc.gob.es/", label: "Tarifas de luz (CNMC)" },
-          { href: "https://comparador.cnmc.gob.es/", label: "Tarifas de gas (CNMC)" },
-          { href: "https://www.esios.ree.es/es/pvpc", label: "Precio de la luz hoy" }
-        ] },
-      { cat: "Comida", img: "assets/comida.png", alt: "Tarros a granel y tupper de sobras", title: "El tupper es alta cocina",
-        text: "Plan semanal, lista y estómago lleno antes del súper. Compara €/kg, no el pack bonito. Temporada, granel seco y sobras con nombre. Congela pan y caldo. El desperdicio es el impuesto más tonto: se paga dos veces, en caja y en basura.",
-        save: "La partida que más sangra en un piso normal." },
-      { cat: "Transporte", img: "assets/transporte.png", alt: "Bici, zapatillas y bomba de aire", title: "El coche no es el salón",
-        text: "Andar o bici por debajo de 2 km. Agrupa recados. Neumáticos a presión y conducción suave: menos combustible de verdad. Compara gasolinera. Un viaje a pie no es pobreza; es no pagar parking por ir a por pan.",
-        save: "Combustible + desgaste + nervios." },
-      { cat: "Compras", img: "assets/compras.png", alt: "Chaqueta remendada y lista de la compra", title: "Amazon no es un grifo",
-        text: "Regla de 30 días. Segunda mano y arreglo antes que nuevo. Biblioteca, herramientas prestadas, genéricos. Date de baja de newsletters de ofertas: son palancas, no favores. Si se rompe, primero YouTube y un tornillo; después, la tienda.",
-        save: "El capricho evitado es 100 % de margen." },
-      { cat: "Dinero", img: "assets/banca.png", alt: "Recibos, tijeras y suscripciones", title: "Las fugas viven en la letra pequeña",
-        text: "Lista de domiciliaciones una vez al trimestre. Cancela pruebas que se volvieron piso de alquiler. Compara seguro y tarifa móvil cada año. Evita el revolving. Una alarma de 3 €/mes es 36 €/año de nada si ya no la usas.",
-        save: "Muerte por mil cuotas." },
-      { cat: "Agua", img: "assets/hero.png", alt: "Cocina y grifos en casa", title: "El grifo no es una fuente ornamental",
-        text: "Ducha corta, lavavajillas y lavadora llenos, goteras fuera. Una botella en la cisterna antigua reduce descarga. Agua de hervir verduras (sin sal) a las plantas cuando enfríe. El calentador a temperatura útil, no a sauna.",
-        save: "Agua + energía de calentarla." }
+    const LEVELS = [
+      {
+        id: "principiante", name: "Principiante", bills: "1 billete", kicker: "Nivel 1 de 4",
+        title: "Principiante: todavía saludas al cajero.",
+        text: "Lista, marca blanca y apagar la luz. Ahorras de verdad y nadie te llama raro. Es el nivel “tengo dignidad, pero miro el precio”.",
+        joke: "Si esto te parece extremo, espera a conocer al ladrillo.",
+        tacticsTitle: "El kit principiante.",
+        tacticsLede: "Consejos que tu madre aprobaría. Todavía puedes hablar de ellos en la cena."
+      },
+      {
+        id: "medio", name: "Medio", bills: "3 billetes", kicker: "Nivel 2 de 4",
+        title: "Medio: ya haces chistes tú antes de que los hagan.",
+        text: "Regleta, tupper y la regla de los 30 días. El stand-by se ha ido a vivir a otro piso. Empiezas a oler las ofertas a dos pasillos de distancia.",
+        joke: "Tus amigos ya saben que si invitas, es a casa. Con sobras con nombre.",
+        tacticsTitle: "El kit de los que ya no compran por aburrimiento.",
+        tacticsLede: "Sigue siendo civilizado. Solo que el delivery te parece una leyenda urbana."
+      },
+      {
+        id: "experto", name: "Experto", bills: "5 billetes", kicker: "Nivel 3 de 4",
+        title: "Experto: reparas, reutilizas y reincides.",
+        text: "La bolsa de té trabaja doble. El champú se diluye. El aluminio se lava. No es miseria: es un hobby con recibos más bajos y anécdotas peores.",
+        joke: "En una boda has preguntado si se podían llevar los centros de mesa. Te reíste. No era broma.",
+        tacticsTitle: "El kit de quien ya no tira casi nada.",
+        tacticsLede: "Aquí el ahorro se nota y la familia empieza a documentarte."
+      },
+      {
+        id: "extremo", name: "Extremo", bills: "10 billetes", kicker: "Nivel 4 de 4 · sin red",
+        title: "Extremo: el ladrillo entra en el váter.",
+        text: "Cisterna con ladrillo, jabón con aceite usado, pasta de dientes de bicarbonato y un cubo en la ducha que luego alimenta el váter. Verídico, antiguo y un poco de comedia negra doméstica. No es consejo médico. Es folklore de tacaño.",
+        joke: "Si alguien abre tu armario y solo encuentra un calcetín con más costuras que calcetín, has llegado.",
+        tacticsTitle: "El kit prohibido en las cenas de Navidad.",
+        tacticsLede: "Locuras reales de toda la vida. Ríete. Si las haces, avisa al fontanero y al dentista."
+      }
     ];
 
+    const TACTICS = [
+      { level: "principiante", cat: "Compras", img: "assets/compras.png", alt: "Lista de la compra", title: "La lista es tu superpoder aburrido",
+        text: "Escribes lo que falta, comes algo y entonces entras. El súper está diseñado para que se te olviden los principios. La lista no. Marca blanca: a menudo es la misma fábrica con menos teatro en el envase.",
+        save: "El capricho del pasillo de ofertas se queda en el pasillo." },
+      { level: "principiante", cat: "Energía", img: "assets/energia.png", alt: "Casa ahorrando luz", title: "Apaga de verdad, no de mentira",
+        text: "Luz al salir. LED si aún quedan bombillas de museo. No hace falta vivir a oscuras: hace falta no iluminar habitaciones vacías como si fueran un hotel.",
+        save: "El interruptor es gratis. El kWh, no.",
+        links: [
+          { href: "https://comparador.cnmc.gob.es/", label: "Tarifas de luz (CNMC)" },
+          { href: "https://www.esios.ree.es/es/pvpc", label: "Precio de la luz hoy" }
+        ] },
+      { level: "principiante", cat: "Comida", img: "assets/comida.png", alt: "Compra con cabeza", title: "Mira el €/kg, no el pack bonito",
+        text: "Dos botes iguales mienten distinto. El precio por kilo es el único adulto en la sala. Temporada: el tomate en enero es un capricho disfrazado de ensalada.",
+        save: "Misma comida, menos teatro, menos ticket." },
+      { level: "principiante", cat: "Dinero", img: "assets/banca.png", alt: "Suscripciones", title: "Las suscripciones no son compañeras de piso",
+        text: "Una vez al trimestre, lista de domiciliaciones. Si no lo has abierto en 30 días, no es un servicio: es un impuesto voluntario.",
+        save: "Muerte por mil cuotas, versión suave." },
+      { level: "principiante", cat: "Agua", img: "assets/hero.png", alt: "Grifo", title: "Cierra el grifo mientras te enjabonas",
+        text: "El agua no necesita aplaudirte. Jabón con el grifo cerrado, aclarar y listo. Primer paso de cisterna: todavía no hay ladrillo. Hay educación.",
+        save: "Litros que no calientas ni pagas." },
+      { level: "principiante", cat: "Transporte", img: "assets/transporte.png", alt: "Recados", title: "Agrupa recados como si fuera un videojuego",
+        text: "Un viaje, tres gestiones. El coche no es el salón. Si vas a por pan, igual no hace falta una expedición con motor.",
+        save: "Gasolina + parking + “ya que estoy”." },
+
+      { level: "medio", cat: "Energía", img: "assets/energia.png", alt: "Regleta", title: "El stand-by es un inquilino sin contrato",
+        text: "Regleta con interruptor para tele, cargadores y esa cajita que parpadea a las 3:14. Lavadora a 30 °C. Nevera a 4 °C, goma de la puerta viva. En invierno, cortinas; en verano, corriente cruzada antes que el aire a 22.",
+        save: "Recibo eléctrico: recorte real, no folklore.",
+        links: [
+          { href: "https://comparador.cnmc.gob.es/", label: "Comparar luz" },
+          { href: "https://comparador.cnmc.gob.es/", label: "Comparar gas" }
+        ] },
+      { level: "medio", cat: "Comida", img: "assets/comida.png", alt: "Tuppers", title: "El tupper es alta cocina",
+        text: "Cocinas de más a propósito. Las sobras tienen nombre y fecha, no misterio biológico. Congelas pan y caldo. El desperdicio es el impuesto más tonto: se paga en caja y otra vez en la basura.",
+        save: "La partida que más sangra en un piso normal." },
+      { level: "medio", cat: "Compras", img: "assets/compras.png", alt: "Espera 30 días", title: "Regla de los 30 días, sin drama",
+        text: "Si no es comida, medicina o un arreglo, espera un mes. El 70 % de los caprichos se aburren solos. Segunda mano para lo que sí sobrevive al mes.",
+        save: "Amazon deja de ser un grifo." },
+      { level: "medio", cat: "Transporte", img: "assets/transporte.png", alt: "Bici y zapatillas", title: "Andar no es pobreza, es no pagar parking",
+        text: "Menos de 2 km: pies o bici. Neumáticos a presión. Compara gasolinera. El “es que llueve un poco” es el argumento más caro del clima mediterráneo.",
+        save: "Combustible + desgaste + nervios." },
+      { level: "medio", cat: "Agua", img: "assets/hero.png", alt: "Ducha corta", title: "La ducha no es un spa municipal",
+        text: "Temporizador mental: canción y fuera. Lavavajillas y lavadora solo llenos. Goteras: un grifo que gotea es un mini gimnasio para tu factura.",
+        save: "Agua + la energía de calentarla." },
+      { level: "medio", cat: "Dinero", img: "assets/banca.png", alt: "Seguros y tarifas", title: "Compara el seguro como si fuera el súper",
+        text: "Tarifa móvil, seguro y banco: una vez al año. La fidelidad a una comercializadora no da puntos. Da recibos.",
+        save: "El “ya lo tengo de toda la vida” es un eslogan, no un plan." },
+
+      { level: "experto", cat: "Agua", img: "assets/hero.png", alt: "Cisterna", title: "Una botella en la cisterna, edición educada",
+        text: "Antes del ladrillo existe la botella de agua llena dentro del tanque: menos litros por descarga, mismo botón. En cisternas viejas funciona. En las duales modernas, usa el botón chico y deja de hacer teatro.",
+        save: "Cada visita al trono deja de ser una piscina." },
+      { level: "experto", cat: "Comida", img: "assets/comida.png", alt: "Caldo", title: "La bolsa de té ficha dos turnos",
+        text: "La misma bolsa da un segundo (y a veces tercer) infusión. Caldo con huesos, pieles de cebolla y el perejil que iba a la basura. El pollo entero, no el filete con marketing.",
+        save: "Comes igual. El cubo de basura adelgaza." },
+      { level: "experto", cat: "Compras", img: "assets/compras.png", alt: "Reparar", title: "YouTube antes que Amazon",
+        text: "Cremallera, suela, sello de nevera, botón. El aluminio se lava. El papel de horno se reusa hasta que pide asilo. Pegar el trozo de jabón a la pastilla nueva no es locura: es continuidad de empresa.",
+        save: "Reparar suele costar un tornillo y dignidad extra." },
+      { level: "experto", cat: "Energía", img: "assets/energia.png", alt: "Tendedero", title: "El tendedero despide a la secadora",
+        text: "Ropa al aire. Radiador solo si ya está calentando la casa, no como spa para calcetines. El champú se puede alargar con un chorro de agua en el bote: mismo pelo, menos plástico, cara de científico loco.",
+        save: "Electrodomésticos que descansan, recibo que también.",
+        links: [{ href: "https://comparador.cnmc.gob.es/", label: "Comparar luz y gas" }] },
+      { level: "experto", cat: "Transporte", img: "assets/transporte.png", alt: "Caminar", title: "El coche se gana el puesto cada mañana",
+        text: "Si el trayecto cabe en un podcast, cabe en un paseo. Comparte coche solo cuando el aforo humano supera al ego. El parking “un momentito” nunca es un momentito.",
+        save: "Kilómetros que no existían, de pronto no existen." },
+      { level: "experto", cat: "Dinero", img: "assets/banca.png", alt: "Fugas", title: "El agua de hervir verduras no se tira (si no lleva sal)",
+        text: "Cuando enfría, a las plantas. El vinagre de restos de vino se hace solo si tienes paciencia. Cada grosería doméstica es un céntimo. Los céntimos son sociales: se juntan.",
+        save: "El experto no espera al milagro. Acumula ridículos rentables." },
+
+      { level: "extremo", cat: "Agua", img: "assets/hero.png", alt: "Ladrillo en la cisterna", title: "El ladrillo entra en la cisterna",
+        text: "Clásico mundial del tacaño: un ladrillo (o una botella gorda) dentro del tanque del váter. Ocupa volumen, baja litros por descarga. Funciona en cisternas antiguas. No destrozar el mecanismo. Si tu váter es nuevo y dual, el ladrillo es más folklore que ingeniería: usa el botón pequeño y duerme tranquilo.",
+        save: "Menos agua por cada visita real. Misma gloria legendaria." },
+      { level: "extremo", cat: "Compras", img: "assets/compras.png", alt: "Jabón casero", title: "Jabón casero con aceite usado",
+        text: "El aceite de freír, filtrado, se puede convertir en jabón de pastilla (saponificación de toda la vida). Huele a abuela y a laboratorio. No lo vendas. Úsalo para platos o manos si te sale bien. Si te sale mal, sigue siendo una anécdota barata.",
+        save: "El gel de 6 € se jubila. Tú hueles a decisión." },
+      { level: "extremo", cat: "Compras", img: "assets/compras.png", alt: "Pasta de dientes", title: "Pasta de dientes de bicarbonato (el dentista no firma)",
+        text: "Bicarbonato, un poco de aceite de coco si te atreves, menta si quieres parecer persona. Es folklore de tacaño extremo, no un tratamiento. Si te pica, paras. Si te da vergüenza, dices que es “kit de camping”. El tubo comercial se aplasta con un palo hasta la última molécula igual.",
+        save: "El tubo de 3 € dura una legislatura. Tu sonrisa, ya veremos." },
+      { level: "extremo", cat: "Agua", img: "assets/energia.png", alt: "Cubo en la ducha", title: "Cubo en la ducha: el agua caliente también vota",
+        text: "Mientras sale el agua fría, un cubo. Esa agua riega plantas o alimenta la cisterna. Nivel jefe: ducha corta sobre el cubo y luego “flush casero”. Tus invitados no tienen por qué saberlo. De hecho, mejor que no.",
+        save: "Grises del día a día, reutilizadas con dignidad dudosa." },
+      { level: "extremo", cat: "Comida", img: "assets/comida.png", alt: "Café de ayer", title: "Café de ayer, huesos de aguacate y fe",
+        text: "El café de ayer se recalienta sin ceremonia. Las semillas se plantan “por si acaso”. El plátano demasiado pintón es pan de plátano, no basura. El yogurt caducado ayer se mira, se huele y se discute en familia como un tribunal.",
+        save: "Nada comestible cruza la frontera de la basura sin juicio." },
+      { level: "extremo", cat: "Compras", img: "assets/transporte.png", alt: "Calcetines eternos", title: "El calcetín inmortal y el gel con agua",
+        text: "Remiendas el calcetín hasta que es un mapa. Al gel, champú y detergente les echas agua al final y los agitas como coctelera. El papel de cocina tiene suplente: trapo. Si alguien dice “eso ya no es higiene, es deporte”, has tocado techo.",
+        save: "Consumibles que se niegan a morir. Igual que tú, mirando el recibo." }
+    ];
+
+    let level = "principiante";
+    let cat = "Todas";
+
+    const levelBtns = document.getElementById("level-btns");
     const filters = document.getElementById("filters");
     const box = document.getElementById("tactics");
-    const cats = ["Todas", ...new Set(TACTICS.map(t => t.cat))];
-    let current = "Todas";
+
+    function currentLevel() {
+      return LEVELS.find(l => l.id === level);
+    }
+
+    function renderLevel() {
+      const L = currentLevel();
+      levelBtns.innerHTML = LEVELS.map(l => `<button type="button" class="${l.id === level ? "on" : ""}" data-level="${l.id}">${l.name}</button>`).join("");
+      document.getElementById("level-kicker").textContent = L.kicker;
+      document.getElementById("level-title").textContent = L.title;
+      document.getElementById("level-text").textContent = L.text;
+      document.getElementById("level-joke").textContent = L.joke;
+      document.getElementById("bill-badge").textContent = L.bills;
+      document.getElementById("tactics-title").textContent = L.tacticsTitle;
+      document.getElementById("tactics-lede").textContent = L.tacticsLede;
+      document.querySelectorAll("#level-visual img").forEach(img => {
+        img.classList.toggle("on", img.dataset.level === level);
+      });
+    }
+
+    function catsForLevel() {
+      return ["Todas", ...new Set(TACTICS.filter(t => t.level === level).map(t => t.cat))];
+    }
 
     function renderFilters() {
-      filters.innerHTML = cats.map(c => `<button class="chip${c === current ? " on" : ""}" data-cat="${c}">${c}</button>`).join("");
+      const cats = catsForLevel();
+      if (!cats.includes(cat)) cat = "Todas";
+      filters.innerHTML = cats.map(c => `<button class="chip${c === cat ? " on" : ""}" data-cat="${c}">${c}</button>`).join("");
     }
+
     function renderTactics() {
-      const list = TACTICS.filter(t => current === "Todas" || t.cat === current);
+      const list = TACTICS.filter(t => t.level === level && (cat === "Todas" || t.cat === cat));
       box.innerHTML = list.map(t => {
         const links = (t.links || []).map(l => `<a href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join("");
         return `
         <article class="card tactic">
           <img src="${t.img}" alt="${t.alt}">
           <div class="body">
-            <div class="tag">${t.cat}</div>
+            <div class="tag">${t.cat} · ${currentLevel().name}</div>
             <h3>${t.title}</h3>
             <p>${t.text}</p>
             <div class="save">${t.save}</div>
@@ -348,15 +510,28 @@
         </article>`;
       }).join("");
     }
+
+    function setLevel(id) {
+      level = id;
+      cat = "Todas";
+      renderLevel();
+      renderFilters();
+      renderTactics();
+    }
+
+    levelBtns.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-level]");
+      if (btn) setLevel(btn.dataset.level);
+    });
     filters.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-cat]");
       if (!btn) return;
-      current = btn.dataset.cat;
+      cat = btn.dataset.cat;
       renderFilters();
       renderTactics();
     });
-    renderFilters();
-    renderTactics();
+
+    setLevel("principiante");
 
     const food = document.getElementById("food");
     const subs = document.getElementById("subs");
