@@ -106,13 +106,24 @@
     .grid-3, .grid-2 { display: grid; gap: 1rem; }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-2 { grid-template-columns: 1.1fr 0.9fr; }
+    .stack { margin-top: 1rem; }
     .card {
       background: var(--forest); border: 1px solid var(--line);
       border-radius: 22px; overflow: hidden;
     }
-    .card.pad { padding: 1.3rem 1.4rem; }
+    .card.pad, .pad { padding: 1.3rem 1.4rem; }
     .card h3 { margin: 0 0 0.4rem; font-size: 1.25rem; }
     .card p { margin: 0; color: var(--paper); }
+    .ext {
+      display: flex; gap: 0.55rem; flex-wrap: wrap; margin-top: 0.9rem;
+    }
+    .ext a {
+      display: inline-flex; align-items: center;
+      padding: 0.45rem 0.8rem; border-radius: 999px;
+      border: 1px solid var(--line); color: var(--gold); text-decoration: none;
+      font-size: 0.88rem; font-weight: 600;
+    }
+    .ext a:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
     .chip {
       border: 1px solid var(--line); background: transparent; color: var(--cream);
@@ -143,11 +154,8 @@
       padding: 1rem; border-radius: 18px; border: 1px solid var(--line); background: var(--forest);
     }
     .grade b { font-family: Fraunces, Georgia, serif; color: var(--gold); }
-    footer {
-      border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; color: var(--paper);
-    }
-    footer .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
     .note { color: var(--muted); font-size: 0.88rem; }
+    #grados { padding-bottom: 4.8rem; }
     @media (max-width: 860px) {
       .stats, .grid-3, .grid-2, .tactic, .grade { grid-template-columns: 1fr; }
       .tactic img { width: 100%; height: 180px; }
@@ -211,6 +219,23 @@
           <p>Caminar, cocinar de más y dormir con la calefacción baja son lujos silenciosos. El logo no te calienta la casa.</p>
         </article>
       </div>
+      <div class="grid-2 stack">
+        <article class="card pad">
+          <h3>Tarifas de luz ahora</h3>
+          <p>El comparador oficial de la CNMC ordena las ofertas reales de electricidad en España. No es un anuncio: es el regulador.</p>
+          <div class="ext">
+            <a href="https://comparador.cnmc.gob.es/" target="_blank" rel="noopener noreferrer">Comparar luz</a>
+            <a href="https://www.esios.ree.es/es/pvpc" target="_blank" rel="noopener noreferrer">Precio PVPC hoy</a>
+          </div>
+        </article>
+        <article class="card pad">
+          <h3>Tarifas de gas ahora</h3>
+          <p>Misma herramienta, pestaña de gas natural: mercado libre frente a la TUR. Entra, elige gas y mira qué te está cobrando de más.</p>
+          <div class="ext">
+            <a href="https://comparador.cnmc.gob.es/" target="_blank" rel="noopener noreferrer">Comparar gas</a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -271,22 +296,16 @@
     </div>
   </section>
 
-  <footer>
-    <div class="wrap row">
-      <div>
-        <strong>Tacaños Extremos</strong>
-        <p class="note">Proyecto para ver en el navegador con este <code>index.html</code>. GitHub muestra el código; ábrelo en local para verlo renderizado.</p>
-      </div>
-      <p>Ver la web: <a href="https://marcos1995.github.io/tacanosExtremos/">https://marcos1995.github.io/tacanosExtremos/</a></p>
-      <p>Código: <a href="https://github.com/Marcos1995/tacanosExtremos">https://github.com/Marcos1995/tacanosExtremos</a></p>
-    </div>
-  </footer>
-
   <script>
     const TACTICS = [
       { cat: "Energía", img: "assets/energia.png", alt: "Casa ahorrando luz y calor", title: "El stand-by es un inquilino invisible",
-        text: "Regleta con interruptor para tele, router auxiliar y cargadores. LED en toda la casa. Lavadora a 30 °C y tendedero en vez de secadora. Nevera a 4 °C, congelador a −18 °C, goma de la puerta bien sellada. En invierno, cortinas por la noche; en verano, toldo y corriente cruzada antes que el aire a 22.",
-        save: "Recibo eléctrico: recorte real, no folklore." },
+        text: "Regleta con interruptor para tele, router auxiliar y cargadores. LED en toda la casa. Lavadora a 30 °C y tendedero en vez de secadora. Nevera a 4 °C, congelador a −18 °C, goma de la puerta bien sellada. En invierno, cortinas por la noche; en verano, toldo y corriente cruzada antes que el aire a 22. Y sí: compara la tarifa, no te cases con la de siempre.",
+        save: "Recibo eléctrico: recorte real, no folklore.",
+        links: [
+          { href: "https://comparador.cnmc.gob.es/", label: "Tarifas de luz (CNMC)" },
+          { href: "https://comparador.cnmc.gob.es/", label: "Tarifas de gas (CNMC)" },
+          { href: "https://www.esios.ree.es/es/pvpc", label: "Precio de la luz hoy" }
+        ] },
       { cat: "Comida", img: "assets/comida.png", alt: "Tarros a granel y tupper de sobras", title: "El tupper es alta cocina",
         text: "Plan semanal, lista y estómago lleno antes del súper. Compara €/kg, no el pack bonito. Temporada, granel seco y sobras con nombre. Congela pan y caldo. El desperdicio es el impuesto más tonto: se paga dos veces, en caja y en basura.",
         save: "La partida que más sangra en un piso normal." },
@@ -314,7 +333,9 @@
     }
     function renderTactics() {
       const list = TACTICS.filter(t => current === "Todas" || t.cat === current);
-      box.innerHTML = list.map(t => `
+      box.innerHTML = list.map(t => {
+        const links = (t.links || []).map(l => `<a href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join("");
+        return `
         <article class="card tactic">
           <img src="${t.img}" alt="${t.alt}">
           <div class="body">
@@ -322,8 +343,10 @@
             <h3>${t.title}</h3>
             <p>${t.text}</p>
             <div class="save">${t.save}</div>
+            ${links ? `<div class="ext">${links}</div>` : ""}
           </div>
-        </article>`).join("");
+        </article>`;
+      }).join("");
     }
     filters.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-cat]");
