@@ -3,8 +3,9 @@
 
 ## Produccion
 - URL: https://github.com/Marcos1995/tacanosExtremos
+- Vista web: https://marcos1995.github.io/tacanosExtremos/
 - Vista local: `index.html` (abrir en el navegador)
-- Deploy: no (solo GitHub.com)
+- Deploy: GitHub Pages (rama `main`)
 
 ## Stack
 - HTML + CSS + JS en un solo `index.html`

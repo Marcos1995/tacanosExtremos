@@ -4,8 +4,10 @@ Web de una sola página sobre ahorrar al límite: tácticas reales (luz, comida,
 
 ## Verla
 
-Abre `index.html` en el navegador (doble clic o `python -m http.server` en este repo).
+Sitio en el navegador: https://marcos1995.github.io/tacanosExtremos/
 
-Repo oficial: https://github.com/Marcos1995/tacanosExtremos
+Código: https://github.com/Marcos1995/tacanosExtremos
 
-GitHub.com muestra el código. Para verlo renderizado, abre el HTML en local.
+<!-- managed-by-telegram-cursor-bot:agent-kit -->
+## Agent kit
+- lean · `AGENTS.md` · `.cursor/rules/context-lean.mdc` · `/review`
