@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tacaños Extremos — el arte verídico de no gastar</title>
+  <meta name="description" content="Guía seria, con humor, para ahorrar de verdad: energía, comida, transporte, compras y fugas de dinero. Sin milagros. Con tácticas que funcionan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pine: #0c1813;
+      --forest: #14241c;
+      --moss: #2a4a38;
+      --leaf: #7d9b7a;
+      --copper: #c4784a;
+      --gold: #e0b07a;
+      --cream: #f3ead9;
+      --paper: #e8dcc6;
+      --ink: #14110e;
+      --muted: #8a8070;
+      --card: #1b2e24;
+      --line: rgba(224, 176, 122, 0.22);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Outfit, system-ui, sans-serif;
+      background: var(--pine);
+      color: var(--cream);
+      line-height: 1.5;
+    }
+    a { color: var(--gold); }
+    img { max-width: 100%; display: block; }
+    .wrap { width: min(1120px, calc(100% - 2rem)); margin-inline: auto; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(12, 24, 19, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 4.25rem; gap: 1rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.7rem;
+      color: inherit; text-decoration: none; font-weight: 600;
+    }
+    .brand img {
+      width: 40px; height: 40px; border-radius: 50%;
+      object-fit: cover; border: 1px solid var(--line);
+    }
+    .brand span { font-family: Fraunces, Georgia, serif; letter-spacing: -0.02em; }
+    nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+    nav a { color: var(--paper); text-decoration: none; font-size: 0.92rem; }
+    nav a:hover { color: var(--gold); }
+    .hero {
+      position: relative; min-height: 88vh;
+      display: grid; align-items: end;
+      overflow: hidden;
+    }
+    .hero img.bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; filter: saturate(0.92) contrast(1.05);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(12,24,19,0.15) 0%, rgba(12,24,19,0.55) 48%, rgba(12,24,19,0.96) 100%),
+        linear-gradient(90deg, rgba(12,24,19,0.55), transparent 55%);
+    }
+    .hero-copy { position: relative; z-index: 1; padding: 5rem 0 3.2rem; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 0.72rem; color: var(--gold);
+    }
+    h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 700; letter-spacing: -0.03em; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.2rem); line-height: 0.95; margin: 0.6rem 0 1rem; max-width: 14ch; }
+    .lede { max-width: 38rem; font-size: 1.15rem; color: var(--paper); }
+    .cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.6rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.85rem 1.2rem; border-radius: 999px; text-decoration: none;
+      border: 1px solid transparent; font-weight: 600; cursor: pointer;
+      font: inherit; color: var(--ink); background: var(--gold);
+    }
+    .btn.ghost { background: transparent; color: var(--cream); border-color: var(--line); }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+      margin: -1.5rem auto 3.5rem; position: relative; z-index: 2;
+    }
+    .stat {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 18px; padding: 1.1rem 1.2rem; box-shadow: var(--shadow);
+    }
+    .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.7rem; color: var(--gold); }
+    .stat span { color: var(--paper); font-size: 0.92rem; }
+    section { padding: 3.5rem 0; }
+    .section-head { max-width: 40rem; margin-bottom: 2rem; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0.3rem 0 0.6rem; }
+    .grid-3, .grid-2 { display: grid; gap: 1rem; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: 1.1fr 0.9fr; }
+    .card {
+      background: var(--forest); border: 1px solid var(--line);
+      border-radius: 22px; overflow: hidden;
+    }
+    .card.pad { padding: 1.3rem 1.4rem; }
+    .card h3 { margin: 0 0 0.4rem; font-size: 1.25rem; }
+    .card p { margin: 0; color: var(--paper); }
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .chip {
+      border: 1px solid var(--line); background: transparent; color: var(--cream);
+      border-radius: 999px; padding: 0.45rem 0.85rem; cursor: pointer; font: inherit;
+    }
+    .chip.on, .chip:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+    .tactic { display: grid; grid-template-columns: 140px 1fr; min-height: 160px; }
+    .tactic img { width: 140px; height: 100%; object-fit: cover; }
+    .tactic .body { padding: 1.1rem 1.2rem; }
+    .tag { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+    .save { color: var(--leaf); font-weight: 600; font-size: 0.92rem; margin-top: 0.55rem; }
+    .calc {
+      background:
+        radial-gradient(circle at 80% 10%, rgba(196,120,74,0.18), transparent 40%),
+        var(--forest);
+      border: 1px solid var(--line); border-radius: 28px; padding: 1.6rem;
+    }
+    label { display: block; font-size: 0.92rem; margin: 0.85rem 0 0.35rem; }
+    input[type="range"] { width: 100%; accent-color: var(--copper); }
+    .result {
+      margin-top: 1.2rem; padding: 1rem 1.1rem; border-radius: 16px;
+      background: var(--pine); border: 1px solid var(--line);
+    }
+    .result strong { font-family: Fraunces, Georgia, serif; font-size: 2rem; color: var(--gold); }
+    .grades { display: grid; gap: 0.8rem; }
+    .grade {
+      display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; align-items: center;
+      padding: 1rem; border-radius: 18px; border: 1px solid var(--line); background: var(--forest);
+    }
+    .grade b { font-family: Fraunces, Georgia, serif; color: var(--gold); }
+    footer {
+      border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; color: var(--paper);
+    }
+    footer .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .note { color: var(--muted); font-size: 0.88rem; }
+    @media (max-width: 860px) {
+      .stats, .grid-3, .grid-2, .tactic, .grade { grid-template-columns: 1fr; }
+      .tactic img { width: 100%; height: 180px; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">
+        <img src="assets/hucha.png" alt="Hucha con candado">
+        <span>Tacaños Extremos</span>
+      </a>
+      <nav>
+        <a href="#manifiesto">Manifiesto</a>
+        <a href="#tacticas">Tácticas</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#grados">Grados</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <img class="bg" src="assets/hero.png" alt="Cocina de noche: contar monedas junto a una hucha con candado">
+    <div class="wrap hero-copy">
+      <p class="kicker">Manual verídico · humor incluido · milagros no</p>
+      <h1>Ser tacaño extremo es un deporte de precisión.</h1>
+      <p class="lede">No se trata de vivir mal. Se trata de dejar de pagar por inercia. Aquí hay tácticas reales —luz, comida, transporte, compras y fugas bancarias— contadas con sorna, comprobadas con recibos.</p>
+      <div class="cta-row">
+        <a class="btn" href="#tacticas">Ver las tácticas</a>
+        <a class="btn ghost" href="#calculadora">Calcular el recorte</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap stats">
+    <div class="stat"><b>30 %</b><span>de la cesta se va en desperdicio y capricho si no hay lista.</span></div>
+    <div class="stat"><b>Stand-by</b><span>Los aparatos apagados de mentira siguen cobrando alquiler eléctrico.</span></div>
+    <div class="stat"><b>0 €</b><span>cuesta el truco más rentable: no comprar lo que no hace falta.</span></div>
+  </div>
+
+  <section id="manifiesto">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">El manifiesto</p>
+        <h2>El euro que no sale no tiene que volver.</h2>
+        <p>El tacaño extremo no colecciona cupones por deporte. Pregunta, antes de cada gasto: ¿esto resuelve un problema o solo alivia un aburrimiento?</p>
+      </div>
+      <div class="grid-3">
+        <article class="card pad">
+          <h3>1. Medir antes de moralizar</h3>
+          <p>Mira el recibo de luz, el ticket del súper y las suscripciones. El drama empieza en los números, no en el sermón.</p>
+        </article>
+        <article class="card pad">
+          <h3>2. Reparar es más cool que renovar</h3>
+          <p>Una cremallera, un sello de nevera o un móvil de tres años bien cuidado ganan a la moda de tirar.</p>
+        </article>
+        <article class="card pad">
+          <h3>3. El lujo es tiempo, no marcas</h3>
+          <p>Caminar, cocinar de más y dormir con la calefacción baja son lujos silenciosos. El logo no te calienta la casa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tacticas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Tácticas auténticas</p>
+        <h2>Formas reales de apretar sin teatro.</h2>
+        <p>Filtro por campo de batalla. Cada consejo es aburridamente cierto. La risa es opcional; el ahorro, no.</p>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="grid-2" id="tactics"></div>
+    </div>
+  </section>
+
+  <section id="calculadora">
+    <div class="wrap grid-2">
+      <div class="calc">
+        <p class="kicker">Calculadora de tacaño</p>
+        <h2>¿Cuánto te estás dejando en el colador?</h2>
+        <p>Estimación honesta, no promesa de influencer. Mueve los sliders con lo que ya haces —o dejas de hacer.</p>
+        <label>Comidas fuera / delivery al mes: <b id="v-food">8</b></label>
+        <input id="food" type="range" min="0" max="20" value="8">
+        <label>Suscripciones que casi no usas: <b id="v-subs">3</b></label>
+        <input id="subs" type="range" min="0" max="10" value="3">
+        <label>Km en coche que podrías ir andando o en bici: <b id="v-km">40</b></label>
+        <input id="km" type="range" min="0" max="200" value="40">
+        <label>Horas de stand-by y luces de más al día: <b id="v-stand">5</b></label>
+        <input id="stand" type="range" min="0" max="12" value="5">
+        <div class="result">
+          <div>Recorte mensual estimado</div>
+          <strong id="monthly">0 €</strong>
+          <div class="note" id="yearly">Al año, eso es otro colchón. O una hucha con candado.</div>
+        </div>
+      </div>
+      <aside class="card">
+        <img src="assets/hucha.png" alt="Hucha de cerámica con candado">
+        <div class="pad">
+          <h3>Regla de los 30 días</h3>
+          <p>Si no es comida, medicina o un arreglo urgente, espera un mes. El 70 % de los caprichos se aburren solos. El 30 % restante sí merecía el dinero —y lo sabrás sin el subidón del botón comprar.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="grados">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Escala interna</p>
+        <h2>De “miro el precio” a “cuento los granos”.</h2>
+      </div>
+      <div class="grades">
+        <div class="grade"><b>Cobre</b><p>Lista de la compra, marca blanca y ducha que no parece spa. Empiezas a notar el recibo.</p></div>
+        <div class="grade"><b>Pino</b><p>Batch cooking, nevera llena con sentido y el cargador fuera del enchufe. Tus amigos ya hacen chistes.</p></div>
+        <div class="grade"><b>Cobre viejo</b><p>Second hand por defecto, reparación antes que Amazon, comparas €/kilo como si fuera deporte olímpico.</p></div>
+        <div class="grade"><b>Hucha con candado</b><p>Cancelaste tres suscripciones, el standby está muerto y el delivery es folklore. Sigues comiendo bien. Eso es el truco.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap row">
+      <div>
+        <strong>Tacaños Extremos</strong>
+        <p class="note">Proyecto para ver en el navegador con este <code>index.html</code>. GitHub muestra el código; ábrelo en local para verlo renderizado.</p>
+      </div>
+      <p>Repo oficial: <a href="https://github.com/Marcos1995/tacanosExtremos">https://github.com/Marcos1995/tacanosExtremos</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const TACTICS = [
+      { cat: "Energía", img: "assets/energia.png", alt: "Casa ahorrando luz y calor", title: "El stand-by es un inquilino invisible",
+        text: "Regleta con interruptor para tele, router auxiliar y cargadores. LED en toda la casa. Lavadora a 30 °C y tendedero en vez de secadora. Nevera a 4 °C, congelador a −18 °C, goma de la puerta bien sellada. En invierno, cortinas por la noche; en verano, toldo y corriente cruzada antes que el aire a 22.",
+        save: "Recibo eléctrico: recorte real, no folklore." },
+      { cat: "Comida", img: "assets/comida.png", alt: "Tarros a granel y tupper de sobras", title: "El tupper es alta cocina",
+        text: "Plan semanal, lista y estómago lleno antes del súper. Compara €/kg, no el pack bonito. Temporada, granel seco y sobras con nombre. Congela pan y caldo. El desperdicio es el impuesto más tonto: se paga dos veces, en caja y en basura.",
+        save: "La partida que más sangra en un piso normal." },
+      { cat: "Transporte", img: "assets/transporte.png", alt: "Bici, zapatillas y bomba de aire", title: "El coche no es el salón",
+        text: "Andar o bici por debajo de 2 km. Agrupa recados. Neumáticos a presión y conducción suave: menos combustible de verdad. Compara gasolinera. Un viaje a pie no es pobreza; es no pagar parking por ir a por pan.",
+        save: "Combustible + desgaste + nervios." },
+      { cat: "Compras", img: "assets/compras.png", alt: "Chaqueta remendada y lista de la compra", title: "Amazon no es un grifo",
+        text: "Regla de 30 días. Segunda mano y arreglo antes que nuevo. Biblioteca, herramientas prestadas, genéricos. Date de baja de newsletters de ofertas: son palancas, no favores. Si se rompe, primero YouTube y un tornillo; después, la tienda.",
+        save: "El capricho evitado es 100 % de margen." },
+      { cat: "Dinero", img: "assets/banca.png", alt: "Recibos, tijeras y suscripciones", title: "Las fugas viven en la letra pequeña",
+        text: "Lista de domiciliaciones una vez al trimestre. Cancela pruebas que se volvieron piso de alquiler. Compara seguro y tarifa móvil cada año. Evita el revolving. Una alarma de 3 €/mes es 36 €/año de nada si ya no la usas.",
+        save: "Muerte por mil cuotas." },
+      { cat: "Agua", img: "assets/hero.png", alt: "Cocina y grifos en casa", title: "El grifo no es una fuente ornamental",
+        text: "Ducha corta, lavavajillas y lavadora llenos, goteras fuera. Una botella en la cisterna antigua reduce descarga. Agua de hervir verduras (sin sal) a las plantas cuando enfríe. El calentador a temperatura útil, no a sauna.",
+        save: "Agua + energía de calentarla." }
+    ];
+
+    const filters = document.getElementById("filters");
+    const box = document.getElementById("tactics");
+    const cats = ["Todas", ...new Set(TACTICS.map(t => t.cat))];
+    let current = "Todas";
+
+    function renderFilters() {
+      filters.innerHTML = cats.map(c => `<button class="chip${c === current ? " on" : ""}" data-cat="${c}">${c}</button>`).join("");
+    }
+    function renderTactics() {
+      const list = TACTICS.filter(t => current === "Todas" || t.cat === current);
+      box.innerHTML = list.map(t => `
+        <article class="card tactic">
+          <img src="${t.img}" alt="${t.alt}">
+          <div class="body">
+            <div class="tag">${t.cat}</div>
+            <h3>${t.title}</h3>
+            <p>${t.text}</p>
+            <div class="save">${t.save}</div>
+          </div>
+        </article>`).join("");
+    }
+    filters.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-cat]");
+      if (!btn) return;
+      current = btn.dataset.cat;
+      renderFilters();
+      renderTactics();
+    });
+    renderFilters();
+    renderTactics();
+
+    const food = document.getElementById("food");
+    const subs = document.getElementById("subs");
+    const km = document.getElementById("km");
+    const stand = document.getElementById("stand");
+    const fmt = n => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+
+    function calc() {
+      document.getElementById("v-food").textContent = food.value;
+      document.getElementById("v-subs").textContent = subs.value;
+      document.getElementById("v-km").textContent = km.value;
+      document.getElementById("v-stand").textContent = stand.value;
+      const monthly = food.value * 9 + subs.value * 8 + km.value * 0.18 + stand.value * 3.2;
+      document.getElementById("monthly").textContent = fmt(monthly);
+      document.getElementById("yearly").textContent = `Al año: ${fmt(monthly * 12)}. Suficiente para aburrir a la hucha.`;
+    }
+    [food, subs, km, stand].forEach(el => el.addEventListener("input", calc));
+    calc();
+  </script>
+</body>
+</html>
