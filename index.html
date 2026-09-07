@@ -147,16 +147,39 @@
       border-radius: 22px; padding: 1.4rem 1.5rem;
       display: flex; flex-direction: column; justify-content: center;
     }
-    .level-btns { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.4rem 0 1.1rem; }
-    .level-btns button {
-      border: 1px solid var(--line); background: transparent; color: var(--cream);
-      border-radius: 999px; padding: 0.55rem 0.95rem; cursor: pointer; font: inherit; font-weight: 600;
-    }
-    .level-btns button.on, .level-btns button:hover {
-      background: var(--gold); color: var(--ink); border-color: var(--gold);
-    }
     .level-copy h3 { font-size: 1.7rem; }
     .level-copy .joke { margin-top: 0.85rem; color: var(--gold); font-style: italic; }
+    .level-bar { margin: 0.55rem 0 1.15rem; }
+    #level-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--gold) var(--fill, 0%), rgba(224, 176, 122, 0.18) var(--fill, 0%));
+      outline: none;
+      cursor: pointer;
+    }
+    #level-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--cream);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); cursor: grab;
+    }
+    #level-range::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--cream);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); cursor: grab;
+    }
+    .level-ticks {
+      display: flex; justify-content: space-between; gap: 0.4rem;
+      margin-top: 0.55rem; font-size: 0.78rem; color: var(--muted);
+    }
+    .level-ticks button {
+      background: none; border: 0; padding: 0; font: inherit; color: inherit;
+      cursor: pointer; text-align: center;
+    }
+    .level-ticks button.on { color: var(--gold); font-weight: 600; }
     .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
     .chip {
       border: 1px solid var(--line); background: transparent; color: var(--cream);
@@ -271,7 +294,7 @@
       <div class="section-head">
         <p class="kicker">Selector de tacañería</p>
         <h2>¿Hasta dónde estás dispuesto a llegar?</h2>
-        <p>Pulsa un nivel. El mismo tacaño se va volviendo más cutre: peor pelo, peor jersey, peor vida social. En Extremo ya es hiper cutre. Nadie te obliga a llegar ahí. Pero el ladrillo de la cisterna te está guiñando un ojo.</p>
+        <p>Arrastra la barra. El mismo tacaño se va volviendo más cutre: peor pelo, peor jersey, peor vida social. En Extremo ya es hiper cutre. Nadie te obliga a llegar ahí. Pero el ladrillo de la cisterna te está guiñando un ojo.</p>
       </div>
       <div class="level-board">
         <div class="level-visual" id="level-visual">
@@ -283,7 +306,10 @@
         </div>
         <div class="level-copy">
           <p class="kicker" id="level-kicker">Nivel 1 de 4</p>
-          <div class="level-btns" id="level-btns"></div>
+          <div class="level-bar">
+            <input id="level-range" type="range" min="0" max="3" step="1" value="0" aria-label="Nivel de tacañería">
+            <div class="level-ticks" id="level-ticks"></div>
+          </div>
           <h3 id="level-title">Principiante</h3>
           <p id="level-text"></p>
           <p class="joke" id="level-joke"></p>
@@ -460,7 +486,8 @@
     let level = "principiante";
     let cat = "Todas";
 
-    const levelBtns = document.getElementById("level-btns");
+    const levelRange = document.getElementById("level-range");
+    const levelTicks = document.getElementById("level-ticks");
     const filters = document.getElementById("filters");
     const box = document.getElementById("tactics");
 
@@ -469,8 +496,11 @@
     }
 
     function renderLevel() {
-      const L = currentLevel();
-      levelBtns.innerHTML = LEVELS.map(l => `<button type="button" class="${l.id === level ? "on" : ""}" data-level="${l.id}">${l.name}</button>`).join("");
+      const idx = LEVELS.findIndex(l => l.id === level);
+      const L = LEVELS[idx];
+      levelRange.value = String(idx);
+      levelRange.style.setProperty("--fill", `${(idx / (LEVELS.length - 1)) * 100}%`);
+      levelTicks.innerHTML = LEVELS.map((l, i) => `<button type="button" class="${i === idx ? "on" : ""}" data-i="${i}">${l.name}</button>`).join("");
       document.getElementById("level-kicker").textContent = L.kicker;
       document.getElementById("level-title").textContent = L.title;
       document.getElementById("level-text").textContent = L.text;
@@ -519,9 +549,10 @@
       renderTactics();
     }
 
-    levelBtns.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-level]");
-      if (btn) setLevel(btn.dataset.level);
+    levelRange.addEventListener("input", () => setLevel(LEVELS[Number(levelRange.value)].id));
+    levelTicks.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-i]");
+      if (btn) setLevel(LEVELS[Number(btn.dataset.i)].id);
     });
     filters.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-cat]");
