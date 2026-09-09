@@ -63,17 +63,23 @@
       display: grid; align-items: end;
       overflow: hidden;
     }
-    .hero img.bg {
+    .hero img.bg, .hero video.bg {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; filter: saturate(0.92) contrast(1.05);
+      animation: ken 28s ease-in-out infinite alternate;
+      transform-origin: 58% 38%;
     }
     .hero::after {
-      content: ""; position: absolute; inset: 0;
+      content: ""; position: absolute; inset: 0; z-index: 1;
       background:
         linear-gradient(180deg, rgba(12,24,19,0.15) 0%, rgba(12,24,19,0.55) 48%, rgba(12,24,19,0.96) 100%),
         linear-gradient(90deg, rgba(12,24,19,0.55), transparent 55%);
     }
-    .hero-copy { position: relative; z-index: 1; padding: 5rem 0 3.2rem; }
+    .hero-copy { position: relative; z-index: 2; padding: 5rem 0 3.2rem; }
+    @keyframes ken {
+      from { transform: scale(1) translate(0, 0); }
+      to { transform: scale(1.12) translate(-2.2%, 1.4%); }
+    }
     .kicker {
       display: inline-flex; align-items: center; gap: 0.5rem;
       letter-spacing: 0.16em; text-transform: uppercase;
@@ -140,9 +146,38 @@
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; opacity: 0;
       transform: scale(1.08);
-      transition: opacity 0.85s ease, transform 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.85s ease;
     }
-    .level-visual img.on { opacity: 1; transform: scale(1); }
+    .level-visual img.on {
+      opacity: 1;
+      animation: idle 14s ease-in-out infinite alternate;
+    }
+    @keyframes idle {
+      from { transform: scale(1); }
+      to { transform: scale(1.07); }
+    }
+    .tactic img { width: 140px; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .tactic:hover img { transform: scale(1.08); }
+    .reel-frame {
+      position: relative; border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--line); background: var(--forest);
+      aspect-ratio: 1; max-width: 560px;
+    }
+    .reel-frame video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .reel-row {
+      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.2rem; align-items: center;
+    }
+    .reel-row .section-head { margin-bottom: 0; }
+    .bob { animation: bob 5.5s ease-in-out infinite; }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero img.bg, .hero video.bg, .level-visual img.on, .bob { animation: none; }
+    }
     .bill-badge {
       position: absolute; left: 1rem; bottom: 1rem; z-index: 2;
       background: rgba(12, 24, 19, 0.78); border: 1px solid var(--line);
@@ -194,7 +229,6 @@
     }
     .chip.on, .chip:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
     .tactic { display: grid; grid-template-columns: 140px 1fr; min-height: 160px; }
-    .tactic img { width: 140px; height: 100%; object-fit: cover; }
     .tactic .body { padding: 1.1rem 1.2rem; }
     .tag { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
     .save { color: var(--leaf); font-weight: 600; font-size: 0.92rem; margin-top: 0.55rem; }
@@ -214,7 +248,7 @@
     .note { color: var(--muted); font-size: 0.88rem; }
     #calculadora { padding-bottom: 4.8rem; }
     @media (max-width: 860px) {
-      .stats, .grid-3, .grid-2, .tactic, .level-board { grid-template-columns: 1fr; }
+      .stats, .grid-3, .grid-2, .tactic, .level-board, .reel-row { grid-template-columns: 1fr; }
       .tactic img { width: 100%; height: 180px; }
       nav { display: none; }
     }
@@ -230,6 +264,7 @@
       <nav>
         <a href="#club">El club</a>
         <a href="#niveles">Tacañómetro</a>
+        <a href="#reel">El vídeo</a>
         <a href="#tacticas">Locuras</a>
         <a href="#calculadora">La pasta</a>
       </nav>
@@ -325,6 +360,21 @@
     </div>
   </section>
 
+  <section id="reel">
+    <div class="wrap reel-row">
+      <div class="reel-frame">
+        <video autoplay muted loop playsinline poster="assets/nivel-principiante.png">
+          <source src="assets/cutre.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="section-head">
+        <p class="kicker">Timelapse del deterioro</p>
+        <h2>De peinado a bolsa de plástico en un rato.</h2>
+        <p>No es un filtro de Instagram. Es el mismo tacaño, cada vez más cutre, en bucle. Las fotos de arriba siguen ahí: esto es el movimiento para quien no se cree la barra.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="tacticas">
     <div class="wrap">
       <div class="section-head">
@@ -358,7 +408,7 @@
         </div>
       </div>
       <aside class="card">
-        <img src="assets/cisterna.png" alt="Un ladrillo dentro de la cisterna del váter">
+        <img class="bob" src="assets/cisterna.png" alt="Un ladrillo dentro de la cisterna del váter">
         <div class="pad">
           <h3>Inquilino estrella: el ladrillo</h3>
           <p>Ahí está. Literal. En el tanque. Ocupa sitio, el váter gasta menos y tú ganas una anécdota que nadie pidió. Nivel Extremo desbloqueado. El fontanero, si se entera, finge que no te conoce.</p>
