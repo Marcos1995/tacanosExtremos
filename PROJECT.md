@@ -20,3 +20,7 @@
 - Web de tacaño extremo: humor + tácticas de ahorro verídicas
 - No usar previews externos; enlace oficial solo github.com
 - Lean kit (ver AGENTS.md)
+
+## Estado
+- 2026-09-28: rediseño editorial (papel, cobre, Fraunces + Outfit, claro y oscuro). Ilustraciones en `assets/` y `cutre.mp4` se mantienen. Pantalla Stitch `6c999ff2fe63410cb85e4bb0e8c69c61`.
+

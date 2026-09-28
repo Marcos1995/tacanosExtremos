@@ -1,0 +1,176 @@
+{
+  ".cursor/agents/explorar.md": {
+    "mtime": 1790623611.096223,
+    "seen": 1790625013.065995,
+    "ast_hash": "6e208cfe0f5f10ed1c52eca68a3e5a5f",
+    "semantic_hash": ""
+  },
+  ".cursor/agents/implementar.md": {
+    "mtime": 1790623611.096223,
+    "seen": 1790625013.065995,
+    "ast_hash": "6e3d9911e1261b8a72f5b380803cc22d",
+    "semantic_hash": ""
+  },
+  ".cursor/skills/debug/SKILL.md": {
+    "mtime": 1790623611.096223,
+    "seen": 1790625013.065995,
+    "ast_hash": "31fbb3729bb6c43bb61f8ab136ad9854",
+    "semantic_hash": ""
+  },
+  ".cursor/skills/laya/SKILL.md": {
+    "mtime": 1790623611.0930972,
+    "seen": 1790625013.065995,
+    "ast_hash": "1bc4782d5ba49d165ab91392a9a917b7",
+    "semantic_hash": ""
+  },
+  ".cursor/skills/review/SKILL.md": {
+    "mtime": 1790623611.092105,
+    "seen": 1790625013.065995,
+    "ast_hash": "d8fa8d4e21e3307fdd7d92d161d38bce",
+    "semantic_hash": ""
+  },
+  ".cursor/skills/verify/SKILL.md": {
+    "mtime": 1790623611.0952206,
+    "seen": 1790625013.065995,
+    "ast_hash": "3ebb042e1baf3773e53ac9a5a0c77574",
+    "semantic_hash": ""
+  },
+  ".cursor/skills/web-design/SKILL.md": {
+    "mtime": 1790623611.0941074,
+    "seen": 1790625013.065995,
+    "ast_hash": "3524e253a6d99ec40207a10fbbf8da93",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1790623611.106521,
+    "seen": 1790625013.065995,
+    "ast_hash": "f8c985d7ed081587b1ccc7f8e9bc3579",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1790624434.6102965,
+    "seen": 1790625013.065995,
+    "ast_hash": "44c2c58828f4257cbe9d559cade991d1",
+    "semantic_hash": ""
+  },
+  "PROJECT.md": {
+    "mtime": 1790624435.96455,
+    "seen": 1790625013.065995,
+    "ast_hash": "6fc747dae7045786a1546a1abe67d43c",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1788721330.7899592,
+    "seen": 1790625013.065995,
+    "ast_hash": "49afb74cf900cb63d00a3d7cadd9019e",
+    "semantic_hash": ""
+  },
+  "docs/DECISIONES.md": {
+    "mtime": 1790624433.8166811,
+    "seen": 1790625013.065995,
+    "ast_hash": "b0bae48982ac06aed5ab8e08d27cd06e",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1790624903.535538,
+    "seen": 1790625013.065995,
+    "ast_hash": "5099217871d2fcf176d080e49877450e",
+    "semantic_hash": ""
+  },
+  "assets/banca.png": {
+    "mtime": 1788720994.1421742,
+    "seen": 1790625013.065995,
+    "ast_hash": "8b118a0db90e3a6ec617ed84e40e9bd3",
+    "semantic_hash": ""
+  },
+  "assets/cisterna.png": {
+    "mtime": 1788797226.5246031,
+    "seen": 1790625013.065995,
+    "ast_hash": "0d8c8d59ae9b7e7e0eaa927b0610d1f5",
+    "semantic_hash": ""
+  },
+  "assets/comida.png": {
+    "mtime": 1788720855.6464205,
+    "seen": 1790625013.065995,
+    "ast_hash": "aceee52a02cebbcd72f01b7dbafaf1ba",
+    "semantic_hash": ""
+  },
+  "assets/compras.png": {
+    "mtime": 1788720894.0876288,
+    "seen": 1790625013.065995,
+    "ast_hash": "8f2997c043a522bbad64398fe05ce408",
+    "semantic_hash": ""
+  },
+  "assets/cubo.png": {
+    "mtime": 1788797216.642261,
+    "seen": 1790625013.065995,
+    "ast_hash": "77b02a5f085f474095f3cd37a4952294",
+    "semantic_hash": ""
+  },
+  "assets/energia.png": {
+    "mtime": 1788720859.9017527,
+    "seen": 1790625013.065995,
+    "ast_hash": "3c0c77540b7fa80ba9413e2487ec3abb",
+    "semantic_hash": ""
+  },
+  "assets/hero.png": {
+    "mtime": 1788720850.9355018,
+    "seen": 1790625013.065995,
+    "ast_hash": "4b5a5bf689dd4bcbb3a80e8f32860532",
+    "semantic_hash": ""
+  },
+  "assets/hucha.png": {
+    "mtime": 1788720884.8983126,
+    "seen": 1790625013.065995,
+    "ast_hash": "a78ded1ae0c951fd4b9618d8feafdb1b",
+    "semantic_hash": ""
+  },
+  "assets/jabon.png": {
+    "mtime": 1788797206.5858037,
+    "seen": 1790625013.065995,
+    "ast_hash": "010fd3606236870da86edb1b69deb3a6",
+    "semantic_hash": ""
+  },
+  "assets/nivel-experto.png": {
+    "mtime": 1788732046.6424947,
+    "seen": 1790625013.065995,
+    "ast_hash": "36bc4a88041d9ed93af74e2d90fd9119",
+    "semantic_hash": ""
+  },
+  "assets/nivel-extremo.png": {
+    "mtime": 1788732116.748014,
+    "seen": 1790625013.065995,
+    "ast_hash": "bd8384a5249abce5af49fba1ec15a98a",
+    "semantic_hash": ""
+  },
+  "assets/nivel-medio.png": {
+    "mtime": 1788732042.596713,
+    "seen": 1790625013.065995,
+    "ast_hash": "7c758c6e5877768c6a4285c0c3793dca",
+    "semantic_hash": ""
+  },
+  "assets/nivel-principiante.png": {
+    "mtime": 1788732003.0411828,
+    "seen": 1790625013.065995,
+    "ast_hash": "cb91b89ec261c2009bfd217e16c57d52",
+    "semantic_hash": ""
+  },
+  "assets/te.png": {
+    "mtime": 1788797235.4493163,
+    "seen": 1790625013.065995,
+    "ast_hash": "3dc69dc638832872fb0266184530131d",
+    "semantic_hash": ""
+  },
+  "assets/transporte.png": {
+    "mtime": 1788720889.711846,
+    "seen": 1790625013.065995,
+    "ast_hash": "4ac6caad526f32f30da695cd5d1b826b",
+    "semantic_hash": ""
+  },
+  "assets/cutre.mp4": {
+    "mtime": 1788982521.5958028,
+    "seen": 1790625013.065995,
+    "ast_hash": "cb1bb6426232d178bd7086c0f2319d3e",
+    "semantic_hash": ""
+  }
+}

@@ -4,264 +4,219 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tacaños Extremos — club de gente que le pone un ladrillo al váter</title>
-  <meta name="description" content="Web de comedia sobre ser tacaño extremo. De apagar la luz a meter un ladrillo en la cisterna. Puro folklore cutre.">
+  <meta name="description" content="Web de comedia sobre ser tacaño extremo. De apagar la luz a meter un ladrillo en la cisterna.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pine: #0c1813;
-      --forest: #14241c;
-      --moss: #2a4a38;
-      --leaf: #7d9b7a;
-      --copper: #c4784a;
-      --gold: #e0b07a;
-      --cream: #f3ead9;
-      --paper: #e8dcc6;
-      --ink: #14110e;
-      --muted: #8a8070;
-      --card: #1b2e24;
-      --line: rgba(224, 176, 122, 0.22);
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      color-scheme: light;
+      --paper: #F4EFE6;
+      --paper-2: #FAF7F2;
+      --paper-3: #E7DFD2;
+      --ink: #1A1814;
+      --muted: #5C564E;
+      --subtle: #6F675E;
+      --copper: #C4784A;
+      --accent: #8C4E2C;
+      --on-copper: #1A1814;
+      --line: rgba(26, 24, 20, 0.14);
+      --hero: #1A1814;
+      --on-hero: #F4EFE6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --paper: #141210;
+        --paper-2: #1C1916;
+        --paper-3: #2A2520;
+        --ink: #F4EFE6;
+        --muted: #C9C0B4;
+        --subtle: #B3A99C;
+        --copper: #E09A6A;
+        --accent: #E8B08A;
+        --on-copper: #1A1814;
+        --line: rgba(244, 239, 230, 0.16);
+      }
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Outfit, system-ui, sans-serif;
-      background: var(--pine);
-      color: var(--cream);
+      background: var(--paper);
+      color: var(--ink);
       line-height: 1.5;
+      font-size: 1rem;
+      overflow-x: clip;
     }
-    a { color: var(--gold); }
-    img { max-width: 100%; display: block; }
-    .wrap { width: min(1120px, calc(100% - 2rem)); margin-inline: auto; }
+    img, video { max-width: 100%; display: block; }
+    h1, h2, h3, p { overflow-wrap: break-word; }
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .wrap { width: min(72rem, 100%); margin-inline: auto; padding-inline: 1.25rem; }
     header {
       position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(12, 24, 19, 0.82);
+      background: var(--paper);
       border-bottom: 1px solid var(--line);
     }
     .nav {
       display: flex; align-items: center; justify-content: space-between;
-      min-height: 4.25rem; gap: 1rem;
+      gap: 1rem; min-height: 4.25rem; flex-wrap: wrap; padding: 0.6rem 0;
     }
     .brand {
-      display: flex; align-items: center; gap: 0.7rem;
-      color: inherit; text-decoration: none; font-weight: 600;
+      color: inherit; text-decoration: none;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.35rem; font-weight: 600; letter-spacing: -0.03em;
     }
-    .brand img {
-      width: 40px; height: 40px; border-radius: 50%;
-      object-fit: cover; border: 1px solid var(--line);
-    }
-    .brand span { font-family: Fraunces, Georgia, serif; letter-spacing: -0.02em; }
-    nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
-    nav a { color: var(--paper); text-decoration: none; font-size: 0.92rem; }
-    nav a:hover { color: var(--gold); }
+    .brand i { color: var(--accent); font-style: normal; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 0.85rem 1.1rem; align-items: center; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent); }
     .hero {
-      position: relative; min-height: 72vh;
-      display: grid; align-items: end;
-      overflow: hidden;
+      position: relative; min-height: 34rem;
+      display: grid; grid-template-columns: minmax(0, 1fr); align-items: end;
+      color: var(--on-hero); background: var(--hero); overflow: hidden;
     }
-    .hero img.bg, .hero video.bg {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; filter: saturate(0.92) contrast(1.05);
-      animation: ken 28s ease-in-out infinite alternate;
-      transform-origin: 58% 38%;
-    }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .hero::after {
-      content: ""; position: absolute; inset: 0; z-index: 1;
-      background:
-        linear-gradient(180deg, rgba(12,24,19,0.15) 0%, rgba(12,24,19,0.55) 48%, rgba(12,24,19,0.96) 100%),
-        linear-gradient(90deg, rgba(12,24,19,0.55), transparent 55%);
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to top, #1A1814 0%, rgba(26,24,20,.7) 46%, rgba(26,24,20,.25) 100%);
     }
-    .hero-copy { position: relative; z-index: 2; padding: 5rem 0 3.2rem; }
-    @keyframes ken {
-      from { transform: scale(1) translate(0, 0); }
-      to { transform: scale(1.12) translate(-2.2%, 1.4%); }
-    }
+    .hero-copy { position: relative; z-index: 1; padding: 6rem 0 3rem; max-width: 38rem; }
     .kicker {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      font-size: 0.72rem; color: var(--gold);
+      margin: 0 0 0.7rem;
+      color: var(--accent);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
     }
-    #level-kicker {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      min-height: 1.2em;
-    }
-    h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 700; letter-spacing: -0.03em; }
-    h1 { font-size: clamp(2.4rem, 6vw, 5.2rem); line-height: 0.95; margin: 0.6rem 0 1rem; max-width: 14ch; }
-    .lede { max-width: 38rem; font-size: 1.15rem; color: var(--paper); }
-    .cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.6rem; }
+    .hero .kicker { color: #E8B08A; }
+    h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 500; letter-spacing: -0.03em; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.05; margin: 0 0 1rem; }
+    h1 em { font-weight: 500; font-style: italic; }
+    .lede { margin: 0; max-width: 36rem; font-size: 1.08rem; color: rgba(244, 239, 230, 0.88); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.6rem; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      padding: 0.85rem 1.2rem; border-radius: 999px; text-decoration: none;
-      border: 1px solid transparent; font-weight: 600; cursor: pointer;
-      font: inherit; color: var(--ink); background: var(--gold);
+      min-height: 2.75rem; padding: 0.7rem 1.15rem;
+      background: var(--copper); color: var(--on-copper);
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      border: 1px solid var(--copper);
     }
-    .btn.ghost { background: transparent; color: var(--cream); border-color: var(--line); }
-    .stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
-      margin: -1.5rem auto 3.5rem; position: relative; z-index: 2;
+    .btn:hover { filter: brightness(1.06); }
+    .btn.ghost {
+      background: transparent; color: var(--on-hero);
+      border-color: rgba(244, 239, 230, 0.55);
     }
-    .stat {
-      background: var(--card); border: 1px solid var(--line);
-      border-radius: 18px; padding: 1.1rem 1.2rem; box-shadow: var(--shadow);
+    .stats { border-bottom: 1px solid var(--line); background: var(--paper-2); }
+    .stats-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .stat { padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+    .stat:last-child { border-bottom: 0; }
+    .stat b {
+      display: block; font-family: Fraunces, Georgia, serif;
+      font-size: 2rem; font-weight: 500; color: var(--accent);
     }
-    .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.7rem; color: var(--gold); }
-    .stat span { color: var(--paper); font-size: 0.92rem; }
-    section { padding: 3.5rem 0; }
-    .section-head { max-width: 42rem; margin-bottom: 2rem; }
-    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0.3rem 0 0.6rem; }
-    .grid-3, .grid-2 { display: grid; gap: 1rem; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-2 { grid-template-columns: 1.1fr 0.9fr; }
-    .stack { margin-top: 1rem; }
+    .stat span { color: var(--muted); font-size: 0.95rem; }
+    section { padding: 4.2rem 0; }
+    .section-head { max-width: 38rem; margin-bottom: 2rem; }
+    .section-head p:last-child { margin: 0.4rem 0 0; color: var(--muted); }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.15; margin: 0; }
+    .grid-3, .grid-2, .split, .reel-row { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+    .grid-3 > *, .grid-2 > *, .split > *, .reel-row > *, .stats-grid > * { min-width: 0; }
     .card {
-      background: var(--forest); border: 1px solid var(--line);
-      border-radius: 22px; overflow: hidden;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
     }
-    .card.pad, .pad { padding: 1.3rem 1.4rem; }
-    .card h3 { margin: 0 0 0.4rem; font-size: 1.25rem; }
-    .card p { margin: 0; color: var(--paper); }
-    .ext {
-      display: flex; gap: 0.55rem; flex-wrap: wrap; margin-top: 0.9rem;
+    .card.pad, .pad { padding: 1.35rem 1.4rem; }
+    .card h3 { margin: 0 0 0.45rem; font-size: 1.25rem; line-height: 1.25; }
+    .card p { margin: 0; color: var(--muted); }
+    .num { display: block; margin-bottom: 0.7rem; color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .ext { display: flex; flex-wrap: wrap; gap: 0.7rem 1rem; margin-top: 0.9rem; }
+    .ext a { font-weight: 600; font-size: 0.92rem; }
+    .supply { margin-top: 1rem; background: var(--paper-3); }
+    .supply .row {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1rem;
+      padding: 1rem 0; border-top: 1px solid var(--line);
     }
-    .ext a {
-      display: inline-flex; align-items: center;
-      padding: 0.45rem 0.8rem; border-radius: 999px;
-      border: 1px solid var(--line); color: var(--gold); text-decoration: none;
-      font-size: 0.88rem; font-weight: 600;
-    }
-    .ext a:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-    .level-board { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 1.2rem; align-items: stretch; }
-    .level-visual {
-      position: relative; aspect-ratio: 1; border-radius: 22px; overflow: hidden;
-      border: 1px solid var(--line); background: var(--forest); min-height: 280px;
-    }
+    .supply .row:first-of-type { border-top: 0; padding-top: 0.2rem; }
+    .supply strong { font-weight: 600; color: var(--ink); }
+    .split { align-items: stretch; }
+    .level-visual { position: relative; min-height: 18rem; background: var(--paper-3); overflow: hidden; }
     .level-visual img {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; opacity: 0;
-      transform: scale(1.08);
-      transition: opacity 0.85s ease;
     }
-    .level-visual img.on {
-      opacity: 1;
-      animation: idle 14s ease-in-out infinite alternate;
+    .level-visual img.on { opacity: 1; }
+    .bill-badge {
+      position: absolute; left: 0.8rem; bottom: 0.8rem; z-index: 1;
+      background: var(--paper); color: var(--ink);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.7rem; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
     }
-    @keyframes idle {
-      from { transform: scale(1); }
-      to { transform: scale(1.07); }
+    .level-copy { padding: 1.4rem 1.45rem; display: flex; flex-direction: column; justify-content: center; }
+    .level-copy h3 { font-size: clamp(1.35rem, 2vw, 1.8rem); margin: 0.2rem 0 0.6rem; }
+    .level-copy p { margin: 0; color: var(--muted); }
+    .joke { margin-top: 0.85rem !important; color: var(--accent) !important; font-family: Fraunces, Georgia, serif; font-style: italic; }
+    #level-kicker { margin-bottom: 0.8rem; }
+    input[type=range] { width: 100%; accent-color: var(--copper); margin: 0.35rem 0 0.4rem; }
+    .level-ticks, .filters { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .level-ticks { margin-top: 0.35rem; }
+    .chip, .level-ticks button {
+      font: inherit; font-size: 0.82rem; font-weight: 500;
+      color: var(--ink); background: transparent;
+      border: 1px solid var(--line); padding: 0.4rem 0.7rem; cursor: pointer;
     }
-    .tactic img { width: 140px; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
-    .tactic:hover img { transform: scale(1.08); }
-    .reel-frame {
-      position: relative; border-radius: 22px; overflow: hidden;
-      border: 1px solid var(--line); background: var(--forest);
-      aspect-ratio: 1; max-width: 560px;
+    .chip.on, .level-ticks button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .reel-frame { background: var(--paper-3); overflow: hidden; aspect-ratio: 1; }
+    .reel-frame video { width: 100%; height: 100%; object-fit: cover; }
+    .tactic img { width: 100%; height: 12.5rem; object-fit: cover; }
+    .card-body { padding: 1.15rem 1.25rem 1.3rem; }
+    .tag { margin: 0 0 0.4rem; color: var(--accent); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .save { margin-top: 0.75rem !important; color: var(--ink) !important; font-weight: 500; }
+    .calc label { display: flex; justify-content: space-between; gap: 1rem; font-weight: 500; }
+    .calc label b { color: var(--accent); font-weight: 600; }
+    .calc .field { margin-bottom: 1.1rem; }
+    .result { margin-top: 0.6rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+    .result strong {
+      display: block; font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 500; color: var(--accent); line-height: 1.1;
     }
-    .reel-frame video {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+    .note { color: var(--muted); margin-top: 0.35rem; }
+    figure { margin: 0; }
+    figcaption { padding: 1rem 1.15rem 1.2rem; }
+    figcaption h3 { margin: 0.25rem 0 0.4rem; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.4rem 0 2rem;
+      color: var(--muted); font-size: 0.88rem;
     }
-    .reel-row {
-      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.2rem; align-items: center;
+    @media (min-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .stat { padding: 1.7rem 1.2rem; border-bottom: 0; border-right: 1px solid var(--line); }
+      .stat:first-child { padding-left: 0; }
+      .stat:last-child { border-right: 0; padding-right: 0; }
+      .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid-2, .reel-row { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+      .hero { min-height: 40rem; }
     }
-    .reel-row .section-head { margin-bottom: 0; }
-    .bob { animation: bob 5.5s ease-in-out infinite; }
-    @keyframes bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    @media (min-width: 1024px) {
+      .split { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 1.4rem; }
+      .calc-board { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero img.bg, .hero video.bg, .level-visual img.on, .bob { animation: none; }
-    }
-    .bill-badge {
-      position: absolute; left: 1rem; bottom: 1rem; z-index: 2;
-      background: rgba(12, 24, 19, 0.78); border: 1px solid var(--line);
-      color: var(--gold); border-radius: 999px; padding: 0.4rem 0.8rem;
-      font-size: 0.82rem; font-weight: 600; backdrop-filter: blur(8px);
-    }
-    .level-copy {
-      background: var(--forest); border: 1px solid var(--line);
-      border-radius: 22px; padding: 1.4rem 1.5rem;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .level-copy h3 { font-size: 1.7rem; }
-    .level-copy .joke { margin-top: 0.85rem; color: var(--gold); font-style: italic; }
-    .level-bar { margin: 0.55rem 0 1.15rem; }
-    #level-range {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 12px;
-      border-radius: 999px;
-      background: linear-gradient(to right, var(--gold) var(--fill, 0%), rgba(224, 176, 122, 0.18) var(--fill, 0%));
-      outline: none;
-      cursor: pointer;
-    }
-    #level-range::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 22px; height: 22px; border-radius: 50%;
-      background: var(--gold); border: 3px solid var(--cream);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); cursor: grab;
-    }
-    #level-range::-moz-range-thumb {
-      width: 22px; height: 22px; border-radius: 50%;
-      background: var(--gold); border: 3px solid var(--cream);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); cursor: grab;
-    }
-    .level-ticks {
-      display: flex; justify-content: space-between; gap: 0.4rem;
-      margin-top: 0.55rem; font-size: 0.78rem; color: var(--muted);
-    }
-    .level-ticks button {
-      background: none; border: 0; padding: 0; font: inherit; color: inherit;
-      cursor: pointer; text-align: center;
-    }
-    .level-ticks button.on { color: var(--gold); font-weight: 600; }
-    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-    .chip {
-      border: 1px solid var(--line); background: transparent; color: var(--cream);
-      border-radius: 999px; padding: 0.45rem 0.85rem; cursor: pointer; font: inherit;
-    }
-    .chip.on, .chip:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-    .tactic { display: grid; grid-template-columns: 140px 1fr; min-height: 160px; }
-    .tactic .body { padding: 1.1rem 1.2rem; }
-    .tag { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
-    .save { color: var(--leaf); font-weight: 600; font-size: 0.92rem; margin-top: 0.55rem; }
-    .calc {
-      background:
-        radial-gradient(circle at 80% 10%, rgba(196,120,74,0.18), transparent 40%),
-        var(--forest);
-      border: 1px solid var(--line); border-radius: 28px; padding: 1.6rem;
-    }
-    label { display: block; font-size: 0.92rem; margin: 0.85rem 0 0.35rem; }
-    input[type="range"] { width: 100%; accent-color: var(--copper); }
-    .result {
-      margin-top: 1.2rem; padding: 1rem 1.1rem; border-radius: 16px;
-      background: var(--pine); border: 1px solid var(--line);
-    }
-    .result strong { font-family: Fraunces, Georgia, serif; font-size: 2rem; color: var(--gold); }
-    .note { color: var(--muted); font-size: 0.88rem; }
-    #calculadora { padding-bottom: 4.8rem; }
-    @media (max-width: 860px) {
-      .stats, .grid-3, .grid-2, .tactic, .level-board, .reel-row { grid-template-columns: 1fr; }
-      .tactic img { width: 100%; height: 180px; }
-      nav { display: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#inicio">
-        <img src="assets/hucha.png" alt="Hucha con candado">
-        <span>Tacaños Extremos</span>
-      </a>
-      <nav>
+      <a class="brand" href="#inicio">Tacaños Extremos<i>.</i></a>
+      <nav class="nav-links">
         <a href="#club">El club</a>
         <a href="#niveles">Tacañómetro</a>
         <a href="#reel">El vídeo</a>
@@ -272,10 +227,10 @@
   </header>
 
   <section class="hero" id="inicio">
-    <img class="bg" src="assets/hero.png" alt="Cocina de noche: contar monedas junto a una hucha con candado">
+    <img src="assets/hero.png" alt="Cocina de noche: contar monedas junto a una hucha con candado">
     <div class="wrap hero-copy">
       <p class="kicker">No es un curso · es una crisis con estilo</p>
-      <h1>Bienvenido al club del ladrillo.</h1>
+      <h1>Bienvenido al club <em>del ladrillo.</em></h1>
       <p class="lede">Aquí no hay coaching. Hay gente que apaga el stand-by, recicla la bolsa de té y, si se pasa de nivel, mete un ladrillo en el váter. Arrastra la barra. Mírate cómo te vas poniendo cutre.</p>
       <div class="cta-row">
         <a class="btn" href="#niveles">A ver qué tan cutre soy</a>
@@ -284,50 +239,54 @@
     </div>
   </section>
 
-  <div class="wrap stats">
-    <div class="stat"><b>1 ladrillo</b><span>vive de alquiler en la cisterna y no paga comunidad.</span></div>
-    <div class="stat"><b>2 infusiones</b><span>saca la misma bolsa de té. La tercera ya es un delito menor.</span></div>
-    <div class="stat"><b>0 €</b><span>cuesta el truco estrella: no comprar el capricho. Fin del TED talk.</span></div>
+  <div class="stats">
+    <div class="wrap stats-grid">
+      <div class="stat"><b>1 ladrillo</b><span>vive de alquiler en la cisterna y no paga comunidad.</span></div>
+      <div class="stat"><b>2 infusiones</b><span>saca la misma bolsa de té. La tercera ya es un delito menor.</span></div>
+      <div class="stat"><b>0 €</b><span>cuesta el truco estrella: no comprar el capricho.</span></div>
+    </div>
   </div>
 
   <section id="club">
     <div class="wrap">
       <div class="section-head">
-        <p class="kicker">Normas del club (no hay normas)</p>
+        <p class="kicker">Normas del club</p>
         <h2>Si se puede no gastar, se no-gasta.</h2>
         <p>El resto es teatro. Aquí el lujo es llegar a fin de mes con la nevera llena de tupper y la dignidad un poco arrugada.</p>
       </div>
       <div class="grid-3">
         <article class="card pad">
-          <h3>1. El súper no es un parque de atracciones</h3>
+          <span class="num">01</span>
+          <h3>El súper no es un parque de atracciones</h3>
           <p>Entras con lista o sales con un queso que no pediste y un vacío existencial. El carrito miente. Tú también, pero menos.</p>
         </article>
         <article class="card pad">
-          <h3>2. Si se mueve, se repara</h3>
+          <span class="num">02</span>
+          <h3>Si se mueve, se repara</h3>
           <p>Cremallera, tostadora, relación con Amazon. YouTube primero. La tienda, si acaso, como último recurso emocional.</p>
         </article>
         <article class="card pad">
-          <h3>3. El stand-by es un gato que no es tuyo</h3>
+          <span class="num">03</span>
+          <h3>El stand-by es un gato que no es tuyo</h3>
           <p>Come luz de noche y no te da cariño. Regleta y a dormir. El piloto rojo no es un amigo, es un okupa.</p>
         </article>
       </div>
-      <div class="grid-2 stack">
-        <article class="card pad">
-          <h3>Tu comercializadora te está haciendo el ridi</h3>
-          <p>Comparador oficial, no un anuncio con una familia feliz. Luz y gas, hoy, sin que te lo venda un primo.</p>
+      <article class="card pad supply">
+        <p class="kicker">Suministros</p>
+        <div class="row">
+          <strong>Tu comercializadora te está haciendo el ridi</strong>
           <div class="ext">
             <a href="https://comparador.cnmc.gob.es/" target="_blank" rel="noopener noreferrer">Luz barata (CNMC)</a>
             <a href="https://www.esios.ree.es/es/pvpc" target="_blank" rel="noopener noreferrer">La luz ahora mismo</a>
           </div>
-        </article>
-        <article class="card pad">
-          <h3>El gas también tiene truco</h3>
-          <p>Misma web, pestaña de gas. Si pagas “el de toda la vida”, enhorabuena: eres el cliente favorito. El suyo. No el tuyo.</p>
+        </div>
+        <div class="row">
+          <strong>El gas también tiene truco</strong>
           <div class="ext">
             <a href="https://comparador.cnmc.gob.es/" target="_blank" rel="noopener noreferrer">Gas barato (CNMC)</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -335,23 +294,22 @@
     <div class="wrap">
       <div class="section-head">
         <p class="kicker">Tacañómetro</p>
-        <h2>Arrastra. Ponte cutre. No hay vuelta atrás emocional.</h2>
+        <h2>Arrastra. Ponte cutre.</h2>
         <p>Misma cara, peor ropa. En Extremo ya parece que el ladrillo le cobra pensión. Las locuras de abajo cambian con el nivel.</p>
       </div>
-      <div class="level-board">
-        <div class="level-visual" id="level-visual">
+      <div class="split">
+        <div class="level-visual card" id="level-visual">
           <img src="assets/nivel-principiante.png" alt="Tacaño principiante, todavía presentable" data-level="principiante" class="on">
           <img src="assets/nivel-medio.png" alt="Tacaño medio, empieza lo cutre" data-level="medio">
           <img src="assets/nivel-experto.png" alt="Tacaño experto, cutre certificado" data-level="experto">
           <img src="assets/nivel-extremo.png" alt="Tacaño extremo, hiper cutre" data-level="extremo">
           <div class="bill-badge" id="bill-badge">Todavía se peina</div>
         </div>
-        <div class="level-copy">
-          <p class="kicker" id="level-kicker">Nivel 1 de 4</p>
-          <div class="level-bar">
-            <input id="level-range" type="range" min="0" max="3" step="1" value="0" aria-label="Nivel de tacañería">
-            <div class="level-ticks" id="level-ticks"></div>
-          </div>
+        <div class="level-copy card">
+          <p class="kicker" id="level-kicker">Nivel 1 · casi persona</p>
+          <label for="level-range">Nivel de tacañería</label>
+          <input id="level-range" type="range" min="0" max="3" step="1" value="0" aria-label="Nivel de tacañería">
+          <div class="level-ticks" id="level-ticks"></div>
           <h3 id="level-title">Principiante</h3>
           <p id="level-text"></p>
           <p class="joke" id="level-joke"></p>
@@ -362,7 +320,7 @@
 
   <section id="reel">
     <div class="wrap reel-row">
-      <div class="reel-frame">
+      <div class="reel-frame card">
         <video autoplay muted loop playsinline poster="assets/nivel-principiante.png">
           <source src="assets/cutre.mp4" type="video/mp4">
         </video>
@@ -370,7 +328,7 @@
       <div class="section-head">
         <p class="kicker">Timelapse del deterioro</p>
         <h2>De peinado a bolsa de plástico en un rato.</h2>
-        <p>No es un filtro de Instagram. Es el mismo tacaño, cada vez más cutre, en bucle. Las fotos de arriba siguen ahí: esto es el movimiento para quien no se cree la barra.</p>
+        <p>No es un filtro. Es el mismo tacaño, cada vez más cutre, en bucle. Si el movimiento te marea, el sistema ya lo deja quieto.</p>
       </div>
     </div>
   </section>
@@ -383,39 +341,55 @@
         <p id="tactics-lede">Todavía puedes contar esto en el trabajo. Casi.</p>
       </div>
       <div class="filters" id="filters"></div>
-      <div class="grid-2" id="tactics"></div>
+      <div class="grid-2" id="tactics" style="margin-top:1.2rem"></div>
     </div>
   </section>
 
   <section id="calculadora">
-    <div class="wrap grid-2">
-      <div class="calc">
-        <p class="kicker">Detector de fugas de dignidad</p>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">La pasta</p>
         <h2>¿Cuánta pasta se te escapa por el colador?</h2>
-        <p>No es ciencia. Es una calculadora que se ríe de ti con cariño.</p>
-        <label>Pedidos de comida que “era solo hoy”: <b id="v-food">8</b></label>
-        <input id="food" type="range" min="0" max="20" value="8">
-        <label>Apps a las que les pagas por no abrirlas: <b id="v-subs">3</b></label>
-        <input id="subs" type="range" min="0" max="10" value="3">
-        <label>Km en coche para ir a por el pan: <b id="v-km">40</b></label>
-        <input id="km" type="range" min="0" max="200" value="40">
-        <label>Pilotitos rojos haciendo fiesta de noche: <b id="v-stand">5</b></label>
-        <input id="stand" type="range" min="0" max="12" value="5">
-        <div class="result">
-          <div>Esto se te está yendo cada mes</div>
-          <strong id="monthly">0 €</strong>
-          <div class="note" id="yearly">Al año da para un ladrillo de oro. O para no comprar nada, que es mejor.</div>
-        </div>
       </div>
-      <aside class="card">
-        <img class="bob" src="assets/cisterna.png" alt="Un ladrillo dentro de la cisterna del váter">
-        <div class="pad">
-          <h3>Inquilino estrella: el ladrillo</h3>
-          <p>Ahí está. Literal. En el tanque. Ocupa sitio, el váter gasta menos y tú ganas una anécdota que nadie pidió. Nivel Extremo desbloqueado. El fontanero, si se entera, finge que no te conoce.</p>
-        </div>
-      </aside>
+      <div class="split calc-board">
+        <form class="card pad calc" onsubmit="return false">
+          <div class="field">
+            <label for="food">Pedidos de comida que “era solo hoy” <b id="v-food">8</b></label>
+            <input id="food" type="range" min="0" max="20" value="8">
+          </div>
+          <div class="field">
+            <label for="subs">Apps a las que les pagas por no abrirlas <b id="v-subs">3</b></label>
+            <input id="subs" type="range" min="0" max="10" value="3">
+          </div>
+          <div class="field">
+            <label for="km">Km en coche para ir a por el pan <b id="v-km">40</b></label>
+            <input id="km" type="range" min="0" max="200" value="40">
+          </div>
+          <div class="field">
+            <label for="stand">Pilotitos rojos haciendo fiesta de noche <b id="v-stand">5</b></label>
+            <input id="stand" type="range" min="0" max="12" value="5">
+          </div>
+          <div class="result">
+            <div>Esto se te está yendo cada mes</div>
+            <strong id="monthly">0 €</strong>
+            <div class="note" id="yearly"></div>
+          </div>
+        </form>
+        <figure class="card">
+          <img src="assets/cisterna.png" alt="Un ladrillo dentro de la cisterna del váter">
+          <figcaption>
+            <p class="kicker">Inquilino estrella</p>
+            <h3>El ladrillo</h3>
+            <p>Ahí está. Literal. En el tanque. Ocupa sitio, el váter gasta menos y tú ganas una anécdota que nadie pidió. El fontanero, si se entera, finge que no te conoce.</p>
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </section>
+
+  <footer>
+    <div class="wrap">Tacaños Extremos · folklore doméstico, no es asesoramiento.</div>
+  </footer>
 
   <script>
     const LEVELS = [
@@ -464,52 +438,49 @@
           { href: "https://comparador.cnmc.gob.es/", label: "¿Quién me está robando la luz?" },
           { href: "https://www.esios.ree.es/es/pvpc", label: "Precio de ahora mismo" }
         ] },
-      { level: "principiante", cat: "Comida", img: "assets/comida.png", alt: "€ por kilo", title: "El €/kg es el único adulto de la sala",
+      { level: "principiante", cat: "Comida", img: "assets/comida.png", alt: "Precio por kilo en la compra", title: "El €/kg es el único adulto de la sala",
         text: "El pack “ahorro familiar” a veces es un timo con dibujito. El tomate en enero es un capricho con pasaporte.",
         save: "Misma lenteja. Menos teatro. Menos ticket." },
-      { level: "principiante", cat: "Pasta", img: "assets/banca.png", alt: "Suscripciones", title: "Esa app no te quiere. Te factura",
+      { level: "principiante", cat: "Pasta", img: "assets/banca.png", alt: "Suscripciones que siguen cobrando", title: "Esa app no te quiere. Te factura",
         text: "Si no la has abierto en un mes, no es un servicio. Es un compañero de piso que no friega y cobra.",
         save: "Muerte por mil cuotas. Versión suave, aún con champú de marca." },
-
-      { level: "medio", cat: "Luz", img: "assets/energia.png", alt: "Regleta", title: "El stand-by hace fiestas a las 3:14",
+      { level: "medio", cat: "Luz", img: "assets/energia.png", alt: "Regleta para cortar el stand-by", title: "El stand-by hace fiestas a las 3:14",
         text: "Regleta, click, silencio. Esa cajita parpadeante no está meditando. Está comiendo. De tu plato.",
         save: "Recibo más flaco. Casa más misteriosa, en el buen sentido.",
         links: [
           { href: "https://comparador.cnmc.gob.es/", label: "Comparar luz" },
           { href: "https://comparador.cnmc.gob.es/", label: "Comparar gas" }
         ] },
-      { level: "medio", cat: "Comida", img: "assets/comida.png", alt: "Tuppers", title: "El tupper es tu chef privado y tu terapia",
+      { level: "medio", cat: "Comida", img: "assets/comida.png", alt: "Tuppers con las sobras", title: "El tupper es tu chef privado y tu terapia",
         text: "Cocinas de más. Le pones nombre a las sobras. “Lunes de gloria”. El desperdicio es pagar dos veces por el mismo arrepentimiento.",
         save: "La basura adelgaza. Tú no. Perfecto." },
-      { level: "medio", cat: "Caprichos", img: "assets/compras.png", alt: "Esperar", title: "Regla de los 30 días: el carrito se aburre",
+      { level: "medio", cat: "Caprichos", img: "assets/compras.png", alt: "Esperar antes de comprar", title: "Regla de los 30 días: el carrito se aburre",
         text: "Lo quieres. Lo dejas. A los 30 días ya ni te acuerdas. Si te acuerdas, igual sí. Pero ya sin el subidón de “comprar ya”.",
         save: "Amazon deja de ser un grifo. Se vuelve un museo." },
-      { level: "medio", cat: "Calles", img: "assets/transporte.png", alt: "Ir andando", title: "El coche no es el salón con ruedas",
+      { level: "medio", cat: "Calles", img: "assets/transporte.png", alt: "Ir andando en vez de en coche", title: "El coche no es el salón con ruedas",
         text: "A por pan: pies. “Es que llueve un poco” en este país es el argumento más caro del clima. El parking “un momentito” nunca es un momentito.",
-        save: "Gasolina + nervios + el “ya que estoy”." },
-
-      { level: "experto", cat: "Té", img: "assets/te.png", alt: "Bolsa de té tendida", title: "La bolsa de té tiene segundo turno",
+        save: "Gasolina, nervios y el “ya que estoy”." },
+      { level: "experto", cat: "Té", img: "assets/te.png", alt: "Bolsa de té tendida para un segundo uso", title: "La bolsa de té tiene segundo turno",
         text: "Una infusión. Se tiende. Otra. La tercera ya es agua caliente con nostalgia. El caldo se hace con lo que iba a la basura y un poco de fe.",
         save: "El cubo de basura se queda sin argumento." },
-      { level: "experto", cat: "Agua", img: "assets/cisterna.png", alt: "Ensayo de cisterna", title: "Antes del ladrillo: la botella okupa",
+      { level: "experto", cat: "Agua", img: "assets/cisterna.png", alt: "Botella dentro de la cisterna", title: "Antes del ladrillo: la botella okupa",
         text: "Una botella llena dentro del tanque. Ocupa litros. El váter no se entera. Si es dual y moderno, pulsa el botón chico y deja el folklore para el siguiente nivel.",
         save: "Cada visita al trono deja de ser una piscina olímpica." },
-      { level: "experto", cat: "Cachivaches", img: "assets/compras.png", alt: "Reparar", title: "YouTube antes que el carrito",
+      { level: "experto", cat: "Cachivaches", img: "assets/compras.png", alt: "Reparar antes de comprar", title: "YouTube antes que el carrito",
         text: "Cremallera, suela, tostadora. El aluminio se lava. El trozo de jabón se pega al nuevo como fusión empresarial. El papel de horno pide asilo y se lo das.",
         save: "Un tornillo. Un vídeo. Un orgullo raro." },
-      { level: "experto", cat: "Pelo", img: "assets/energia.png", alt: "Champú alargado", title: "El champú se diluye. Tú no (tanto)",
+      { level: "experto", cat: "Pelo", img: "assets/energia.png", alt: "Champú alargado con agua", title: "El champú se diluye. Tú no (tanto)",
         text: "Agua al bote. Agitas. Mismo pelo, cara de científico loco. La secadora se jubila: tendedero, punto. Los calcetines se secan como el resto de la familia: al aire.",
         save: "Electrodomésticos de vacaciones. Recibo también.",
         links: [{ href: "https://comparador.cnmc.gob.es/", label: "Mientras, cambia la tarifa" }] },
-
       { level: "extremo", cat: "Váter", img: "assets/cisterna.png", alt: "Ladrillo dentro de la cisterna", title: "El ladrillo. Dentro. Del. Váter.",
         text: "Ahí vive. Rojo, orgulloso, mojado. Ocupa sitio, baja litros, sube tu leyenda. No destroces el mecanismo. Si el váter es nuevo, usa el botón pequeño y finge que tienes un ladrillo emocional.",
         save: "Menos agua. Más anécdota. Nadie te lo pidió." },
       { level: "extremo", cat: "Higiene", img: "assets/jabon.png", alt: "Jabón casero y pasta de bicarbonato", title: "Jabón de freír y pasta de bicarbonato",
-        text: "El aceite usado se vuelve pastilla. El bicarbonato se vuelve “pasta”. Hueles a abuela y a laboratorio. El dentista no firma. Si pica, paras. Si sale bien, no lo vendas. No somos así de tacaños… espera.",
+        text: "El aceite usado se vuelve pastilla. El bicarbonato se vuelve “pasta”. Hueles a abuela y a laboratorio. El dentista no firma. Si pica, paras.",
         save: "El gel de 6 € se jubila. Tú hueles a decisión." },
       { level: "extremo", cat: "Ducha", img: "assets/cubo.png", alt: "Cubo recogiendo agua de la ducha", title: "El cubo también se ducha",
-        text: "Agua fría al cubo. Luego a las plantas o a la cisterna (el ladrillo ya tiene compañero de piso). Nivel jefe: ducha corta y cisterna casera. Los invitados. Mejor que no.",
+        text: "Agua fría al cubo. Luego a las plantas o a la cisterna (el ladrillo ya tiene compañero de piso). Nivel jefe: ducha corta. Los invitados, mejor que no.",
         save: "El agua trabaja dos veces. Tú también, pero de gratis." },
       { level: "extremo", cat: "Cocina", img: "assets/te.png", alt: "Café de ayer y té reusado", title: "Café de ayer, huesos de aguacate y fe",
         text: "El café de ayer se recalienta sin ceremonia. Las semillas se plantan “por si acaso”. El yogur de ayer se juzga en tribunal familiar. El calcetín se remienda hasta ser un mapa.",
@@ -518,7 +489,6 @@
 
     let level = "principiante";
     let cat = "Todas";
-
     const levelRange = document.getElementById("level-range");
     const levelTicks = document.getElementById("level-ticks");
     const filters = document.getElementById("filters");
@@ -532,7 +502,6 @@
       const idx = LEVELS.findIndex(l => l.id === level);
       const L = LEVELS[idx];
       levelRange.value = String(idx);
-      levelRange.style.setProperty("--fill", `${(idx / (LEVELS.length - 1)) * 100}%`);
       levelTicks.innerHTML = LEVELS.map((l, i) => `<button type="button" class="${i === idx ? "on" : ""}" data-i="${i}">${l.name}</button>`).join("");
       document.getElementById("level-kicker").textContent = L.kicker;
       document.getElementById("level-title").textContent = L.title;
@@ -553,21 +522,20 @@
     function renderFilters() {
       const cats = catsForLevel();
       if (!cats.includes(cat)) cat = "Todas";
-      filters.innerHTML = cats.map(c => `<button class="chip${c === cat ? " on" : ""}" data-cat="${c}">${c}</button>`).join("");
+      filters.innerHTML = cats.map(c => `<button type="button" class="chip${c === cat ? " on" : ""}" data-cat="${c}">${c}</button>`).join("");
     }
 
     function renderTactics() {
       const list = TACTICS.filter(t => t.level === level && (cat === "Todas" || t.cat === cat));
       box.innerHTML = list.map(t => {
         const links = (t.links || []).map(l => `<a href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label}</a>`).join("");
-        return `
-        <article class="card tactic">
+        return `<article class="card tactic">
           <img src="${t.img}" alt="${t.alt}">
-          <div class="body">
-            <div class="tag">${t.cat} · ${currentLevel().name}</div>
+          <div class="card-body">
+            <p class="tag">${t.cat} · ${currentLevel().name}</p>
             <h3>${t.title}</h3>
             <p>${t.text}</p>
-            <div class="save">${t.save}</div>
+            <p class="save">${t.save}</p>
             ${links ? `<div class="ext">${links}</div>` : ""}
           </div>
         </article>`;
@@ -594,7 +562,6 @@
       renderFilters();
       renderTactics();
     });
-
     setLevel("principiante");
 
     const food = document.getElementById("food");
@@ -602,7 +569,6 @@
     const km = document.getElementById("km");
     const stand = document.getElementById("stand");
     const fmt = n => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
-
     function calc() {
       document.getElementById("v-food").textContent = food.value;
       document.getElementById("v-subs").textContent = subs.value;
@@ -614,6 +580,12 @@
     }
     [food, subs, km, stand].forEach(el => el.addEventListener("input", calc));
     calc();
+
+    const reel = document.querySelector(".reel-frame video");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches && reel) {
+      reel.removeAttribute("autoplay");
+      reel.pause();
+    }
   </script>
 </body>
 </html>
